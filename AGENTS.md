@@ -4,7 +4,13 @@ Instructions for AI coding agents that work on this repository. Human contributo
 
 ## What this project is
 
-DS Bot (`ds-bot/`) is a plugin for DeepSeek Harness (DSH). It turns DSH Desktop and DSH Web into a team of long-lived Bots:
+DS Bot is a team of long-lived Bots, built on DeepSeek Harness (DSH). This repository has three parts:
+
+- `ds-bot/`: the Bot features, written as a DSH plugin. It turns DSH Desktop and DSH Web into a team of long-lived Bots, and its mobile bridge connects the phone app.
+- `app/`: the desktop app for Windows, macOS and Linux. It runs a pinned DSH with the `ds-bot` plugin, in its own profile and its own `DSH_HOME`, and imports an existing team from the user's DSH.
+- `apps/mobile/`, `packages/mobile-sdk/`: the phone app and the SDK it uses to reach a host through that mobile bridge.
+
+The Bot team:
 
 - Every Bot is a long-lived identity whose work runs in DSH Sessions: one for its own chat, one for each group it is in, and a fresh one when the context fills up (earlier ones stay readable). Every turn runs through the normal DSH agent loop, tools and model routes.
 - The team works together: Bots message each other, share group chats and can see what the other Bots are doing. Each Bot still runs on its own and does not disturb the others.
@@ -19,7 +25,7 @@ DS Bot (`ds-bot/`) is a plugin for DeepSeek Harness (DSH). It turns DSH Desktop 
 3. **Only original material.** Do not copy code, text, icons, logos or graphics from other products or websites. Code under a license compatible with Apache 2.0 is the only exception: say where it comes from and add its notice to the `NOTICE` file.
 4. **`client.js` is generated.** Change `ds-bot/src/client/`, then run `npm run build` and commit both files. Never edit `client.js` by hand.
 5. **Do not touch the user's own DSH data.** The test bench keeps its data in `.dsh-test-<name>/`. Never point a test at `~/.dsh` or at a DSH that the user runs.
-6. Before you change behavior, read the design for it in `docs/plans/` (and `docs/vision.md`). A change to a decided design needs the maintainer; a new large feature adds its design note to the same pull request.
+6. Before you change behavior, read the design for it in `docs/plans/` (and `docs/vision.md`); for interface work also the [UI standard](docs/design/ui-standard.md). A change to a decided design needs the maintainer; a new large feature adds its design note to the same pull request.
 
 ## Commands
 
@@ -37,6 +43,15 @@ dev/bench.sh smoke 3096 8796 stop
 ```
 
 A change is done when `npm test`, the `--check` and `npm run lint` pass; CI runs them on every pull request. Run the smoke test as well for changes to `index.js` or `src/host/`. Use a free port for each bench, and stop every bench and process that you started.
+
+## Issues and pull requests
+
+The full workflow is in [CONTRIBUTING.md](CONTRIBUTING.md). The parts that an agent must follow:
+
+- Open an issue in [this repository](https://github.com/QingJ01/DS-Bot-App/issues) for a problem, an installation question or a feature request; for a change, explain the resulting behavior and its validation.
+- Keep the user's host data and credentials out of reports, commits and screenshots.
+- Add a change that users can see to `CHANGELOG.md` under "Unreleased".
+- Do not close an issue without evidence: the pull request or commit that fixed it, the issue it duplicates, or the reason it will not be fixed.
 
 ## Layout
 
