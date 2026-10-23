@@ -44,3 +44,31 @@ Upstream npm/maintainer release machinery and issue-triage assets are excluded; 
 ### Validation
 
 Local gates passed: 797 plugin tests, 28 SDK tests, 78 App tests, 23 Python tests (7 skipped), 4 GitHub-install tests, 4 plugin-install tests (1 Windows-only skip), the r1 release check, TypeScript and generated-client checks, and lint (15 warnings). Mock-only host and mobile smoke passed 41 and 18 steps. Both Compose configurations and the Docker image build passed. `docker/test.mjs` did not pass: both runs timed out at the existing offline reinstall step while pnpm reported `Verifying lockfile against supply-chain policies (31 entries)...`; an isolated reproduction remained in that step. This is not counted as a pass. No native device/emulator UI acceptance, real-model behavior, public asset verification or CI result is claimed here.
+
+## 2026-10-24: Upstream v0.2.1 sync
+
+Synced the upstream [v0.2.1 release](https://github.com/Fei2411/DeepSeek-Bot/releases/tag/v0.2.1), source commit `1bebe826f74e9a72cabafd3b80602b05af867b38`, on top of the v0.2.0 tree `02cbb63a29f3591839d2b37ffa91d202a12ede6c` this fork imported before. The fork keeps its independent `0.1.3` version line, mobile bridge, phone pairing, IPv6 direct access and coordinated plugin/App release flow. The sync is on main and awaits a release; published v0.1.3 assets are unchanged.
+
+### Included
+
+- A desktop app for Linux: one AppImage that runs on every distribution and updates itself, plus a deb for Debian and Ubuntu (x64).
+- Side questions with `/btw`: in a Bot's own chat the Bot answers from the conversation so far without stopping its task or running a tool, and the answer stays out of its history.
+- Message layout in Settings → General → Appearance: a bubble-width slider and a flat layout with its own text width. Bubbles widen with the window, Bot thinking is hidden by default, and the activity row stays put across steps.
+- The desktop app gets the Bot browser, cookie import from a file or an installed Chrome, Edge or Firefox profile, and a save dialog for files downloaded from the window.
+- View cards can draw charts, calculators whose numbers update as the sliders move, and custom sandboxed views.
+- A Bot's account menu has Sign out; a saved key's purpose can be edited or cleared; groups keep a Bot's or the user's @ calls; phone-width layouts and touch targets were corrected.
+- Fixes: Windows settings through a short path, a team left read-only after a crash, unreadable memory or secrets files, view cards in earlier parts, the key-card reason in a view-only window, the activity row on DSH 0.2.1, web search after `web-search-auto` is turned off, and the side-panel tab highlight.
+
+### Fork adaptations and exclusions
+
+The fork keeps its own release path in `docs/releasing.md`; upstream maintainer assets are not adopted: `.agents/skills/` (issue triage and GIF recording) and `.github/workflows/release.yml`.
+
+Release asset names stay on this fork's `DS-Bot-App-<version>-…` scheme for the macOS zip and the Linux deb, updater log lines keep the `DS Bot App` product name, and the Linux binary keeps `executableName: ds-bot-app`.
+
+The mobile bridge and the phone App are untouched by this sync: upstream v0.2.1 changes nothing under `apps/mobile/` or `packages/mobile-sdk/`. `checkShownView` now returns the normalized view beside the title, and the fork's near-limit view fixture follows that contract.
+
+### Validation
+
+Local run on macOS (Node 22.22.3): 1111 plugin tests (1109 pass, 2 skipped), the generated-client check and oxlint (0 errors, 14 warnings) pass; the desktop package's 115 tests give 113 pass, 1 skipped and one failure that also fails on the pre-sync tree — `app/test/move-data.test.mjs` compares `/var/...` with the `/private/var/...` realpath macOS resolves it to.
+
+Not run in this round: installer packaging, native Android/iOS builds, the Docker image, and the mock-model smoke benches. CI on the pull request covers the plugin and App test suites.

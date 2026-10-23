@@ -90,3 +90,31 @@ Fork 保留独立的 `0.1.2` 版本线、手机桥接、安装完整性规则、
 702 项插件、76 项 App、28 项 SDK、23 项构建脚本测试通过；TypeScript、生成客户端一致性、lint 和 Expo Web 导出通过。隔离的官方 npm DSH `0.2.0-rc.2` 与 mock 模型通过桌面 40 步和移动 18 步 smoke，覆盖群权限开启/恢复，以及任务完成前取得进展。新场景已加入 `ds-bot/dev/mobile-smoke.mjs`。
 
 使用真实 Expo App 和该测试主机完成 5 项浏览器交互检查：工作胶囊打开详情、权限保存、关闭覆盖、中英文/夜间模式和 320 px 布局，无浏览器运行错误。仅使用 `.dsh-test-upstream016-20261015`，不访问用户自己的 DSH 数据或真实模型凭据。本轮未构建或实测原生 Android/iOS，也未验证公网 IPv6 连通性。
+
+## 2026-10-24：同步上游 v0.2.1
+
+固定上游 [v0.2.1](https://github.com/Fei2411/DeepSeek-Bot/releases/tag/v0.2.1)，源码提交 `1bebe826f74e9a72cabafd3b80602b05af867b38`，在此前导入的 v0.2.0 文件树 `02cbb63a29f3591839d2b37ffa91d202a12ede6c` 之上增量合并。本分支保留独立的 `0.1.3` 版本线、手机桥接、手机配对、公网 IPv6 直连和插件/App 配套发布流程。本次同步已在 main 上，尚未发布；已发布的 v0.1.3 资产保持不变。
+
+### 包含内容
+
+- 桌面 App 支持 Linux：一个 AppImage 通用于各发行版并自行更新，另有面向 Debian/Ubuntu 的 deb（x64）。
+- `/btw` 侧问：在 Bot 自己的会话里问一句，Bot 依据已有对话回答，不打断它手头的任务、不调用工具，问答也不进入它的历史记录。
+- 设置 → 通用 → 外观新增消息版式：气泡宽度滑块，以及不带气泡、在头像与名称下平铺的版式并带独立正文宽度。气泡随窗口变宽，Bot 的思考默认收起，活动行在多步任务中不再闪烁消失。
+- 桌面 App 拥有 Bot 浏览器；可从文件或已安装的 Chrome、Edge、Firefox 配置导入 Cookie；从窗口下载的文件会询问保存位置。
+- 视图卡片可绘制图表、拖动即算的计算器，以及自定义的沙箱网页视图。
+- Bot 账号菜单新增退出登录；已保存密钥的用途可编辑或清除；群聊不再丢弃 Bot 或用户的 @ 点名；修正窄屏与触屏布局。
+- 修复：Windows 短路径下的设置保存、崩溃后团队被锁为只读、记忆或密钥文件不可读时被覆盖、早前分段中的视图卡片、只读窗口中密钥卡不出现的原因、DSH 0.2.1 上的活动行、关闭 `web-search-auto` 后的网页搜索，以及侧栏页签高亮。
+
+### Fork 适配与排除项
+
+本分支继续使用 `docs/releasing.md` 的发布流程；不采纳上游的维护者资产：`.agents/skills/`（issue 分诊与 GIF 录制）和 `.github/workflows/release.yml`。
+
+发布资产名保持本 fork 的 `DS-Bot-App-<version>-…` 规则（macOS zip 与 Linux deb），更新日志行保留 `DS Bot App` 产品名，Linux 可执行文件名保持 `executableName: ds-bot-app`。
+
+本次同步不涉及手机桥接与手机 App：上游 v0.2.1 未改动 `apps/mobile/` 和 `packages/mobile-sdk/`。`checkShownView` 现在会一并返回规范化后的视图，本 fork 的临界大视图夹具已按新契约调整。
+
+### 验证
+
+在 macOS（Node 22.22.3）本地执行：插件 1111 项测试（通过 1109、跳过 2）、生成客户端一致性与 oxlint（0 error、14 warning）通过；桌面包 115 项测试中通过 113、跳过 1、失败 1——该失败在同步前的树上同样失败：`app/test/move-data.test.mjs` 拿 `/var/…` 与 macOS 解析出的 `/private/var/…` 比较。
+
+本轮未执行：安装包打包、Android/iOS 原生构建、Docker 镜像，以及 mock 模型 smoke 台架。PR 上的 CI 覆盖插件与 App 两套测试。

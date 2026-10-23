@@ -59,7 +59,7 @@ Screenshots use demonstration data. [Capture details](docs/images/mobile/README.
 github:QingJ01/DS-Bot-App#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot
 ```
 
-Copy the complete line. The release also includes `ds-bot-0.1.3.tgz`; verify release downloads with `SHA256SUMS`. The plugin archive SHA-256 is `ab65ce3033a88890c3410c371aa7a2fc8c88f96437f4620889128b6a7b1c5b1f`.
+Copy the complete line. The release also includes `ds-bot-0.1.3.tgz`; verify release downloads with `SHA256SUMS`. If the pinned address cannot be installed here, for example on a computer without Git, install that archive from its full path instead. The plugin archive SHA-256 is `ab65ce3033a88890c3410c371aa7a2fc8c88f96437f4620889128b6a7b1c5b1f`.
 
 This pin targets the released v0.1.3 source. Historical v0.1.2 downloads remain published unchanged for existing lockfiles; use v0.1.3 for new installations. See the [v0.1.3 release notes](docs/releases/v0.1.3.md).
 
@@ -75,13 +75,25 @@ iOS source is available; no IPA is currently provided. See the [iOS guide](docs/
 
 Host plugin upgrades and repair: [Plugin updates](docs/plugin-updates.md).
 
+### Web search
+
+DS Bot selects its `auto` search provider for the whole profile. If you disable `web-search-auto`, also select another registered search provider in that profile. See [Web search](ds-bot/README.md#web-search) and the [recovery steps](docs/known-issues.md#web-search-fails-everywhere-after-turning-off-web-search-auto).
+
 ## Docker
 
 Build the image from this repository checkout; see [`docker/README.md`](docker/README.md). The container is the Bots' sandbox. Phone pairing and the mobile bridge inside Docker are not published or validated by this image.
 
 ## Desktop app
 
-The Windows and macOS desktop app is in [`app/`](app/README.md). On a development machine, start it with:
+The desktop app is in [`app/`](app/README.md). It brings its own DSH, so you don't need to install DSH first. Download it from [Releases](https://github.com/QingJ01/DS-Bot-App/releases/latest):
+
+- Windows (x64): `DS-Bot-App-<version>-win-x64.exe`. Run it; it installs for your user only, without administrator rights. If Windows shows "Windows protected your PC", select **More info** → **Run anyway**.
+- macOS: `DS-Bot-App-<version>-mac-arm64.zip` for an Apple chip, `DS-Bot-App-<version>-mac-x64.zip` for Intel. Safari unzips it by itself; drag **DS Bot App** into **Applications** and open it. When macOS says it cannot check the app, open **System Settings** → **Privacy & Security** and select **Open Anyway**.
+- Linux (x64): the app also builds as `DS-Bot-App-<version>-linux-x86_64.AppImage` and `DS-Bot-App-<version>-linux-amd64.deb`; CI builds and checks both, but this fork's release flow does not attach them to Releases yet. Build one with `npm run dist` in `app/` on Linux; see the Linux part of [`app/README.md`](app/README.md).
+
+At the first start the app asks where to keep its data and the Bots' files, and offers to copy a Bot team from your DSH (it only reads your DSH). Set up a model in its settings. The Windows app updates itself; the macOS app and a Linux deb tell you when a new version is ready to download.
+
+On a development machine, start it with:
 
 ```sh
 cd app
@@ -89,7 +101,7 @@ npm ci
 npm start
 ```
 
-Build an installer with `npm run dist` on the matching target OS. The local Linux environment is not a supported installer target; native Windows/macOS packaging is left to their CI runners. macOS packages are not notarized. Desktop updater metadata is published only with a plain `vX.Y.Z` release; `-rN` revisions remain for plugin and Android assets, so a desktop update requires the next semantic version.
+Build an installer with `npm run dist` on the matching target OS; native Windows, macOS and Linux packaging is left to their CI runners. macOS packages are not notarized. Desktop updater metadata is published only with a plain `vX.Y.Z` release; `-rN` revisions remain for plugin and Android assets, so a desktop update requires the next semantic version.
 
 ## Development
 
@@ -105,7 +117,7 @@ Use Node.js 24 for development. See [Contributing](CONTRIBUTING.md) for setup, t
 
 The host integration baseline is DSH `0.2.1-rc.2`. Voice and desktop browser control require the corresponding host services; see [feature configuration](docs/mobile-features.zh.md).
 
-This fork synchronizes the frozen upstream `dev` tree at `02cbb63a29f3591839d2b37ffa91d202a12ede6c` (upstream `v0.2.0`). This sync is unreleased here; the fork remains at `0.1.3`. Docker intentionally retains this fork's offline plugin-archive reinstall, policy metadata seeding and transactional rollback; upstream removed that behavior.
+This fork synchronizes the frozen upstream tree at `1bebe826f74e9a72cabafd3b80602b05af867b38` (upstream `v0.2.1`), whose diff base is `02cbb63a29f3591839d2b37ffa91d202a12ede6c` (upstream `v0.2.0`). This sync is unreleased here; the fork remains at `0.1.3`. Docker intentionally retains this fork's offline plugin-archive reinstall, policy metadata seeding and transactional rollback; upstream removed that behavior.
 
 [Local debugging](docs/mobile-local-debug.zh.md) · [Upstream sync](docs/mobile-upstream.zh.md) · [Changelog](CHANGELOG.md)
 

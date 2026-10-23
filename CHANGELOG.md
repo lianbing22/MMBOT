@@ -17,6 +17,7 @@ All notable changes to DS Bot are listed here. The format follows [Keep a Change
 ### Upstream synchronization (unreleased)
 
 - Port the approved upstream desktop, runtime, session-navigation, thinking, views, avatar, and message-display changes while retaining DS Bot App version `0.1.3`, fork release metadata, and mobile authorization/TLS isolation.
+- Sync upstream `1bebe826f74e9a72cabafd3b80602b05af867b38` (upstream `v0.2.1`, diff base `02cbb63a29f3591839d2b37ffa91d202a12ede6c` = upstream `v0.2.0`): a Bot's own chat takes `/btw` side questions without stopping its work; the desktop app gets the Bot browser, cookie import from a file or an installed browser profile, and a save prompt for downloads; message layout and the views a Bot shows in its replies are adjustable; Linux builds as an AppImage that updates itself and a deb (built and checked by CI; this fork's release flow does not attach them yet); groups no longer drop @ calls, a Bot's thinking starts hidden, and a phone-width window keeps the details panel, menus and controls usable. Unreleased here: the fork keeps version `0.1.3`, its release metadata and mobile authorization/TLS isolation.
 
 ## DS Bot App [v0.1.3] - 2026-10-20
 
