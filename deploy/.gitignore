@@ -1,0 +1,14 @@
+# deploy/install.sh 生成的内容不进入版本库。
+
+.env
+.env.bak.*
+
+# 数据卷：Bot 团队、会话与工作目录（备份见 deploy/README.zh.md）。
+data/
+workspace/
+
+# 离线镜像包、校验和与传输用 tar。
+offline/
+
+# 证书私钥不要提交。
+proxy/tls/
