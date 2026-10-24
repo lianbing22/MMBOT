@@ -91,7 +91,7 @@ nginx 配置在 `deploy/proxy/nginx.conf`（透传 `Host`、关闭缓冲以支�
 
 ## 回滚
 
-把 `deploy/.env` 的 `MMBOT_IMAGE` 改回上一个 tag，重新 `up -d` 即可；`data/` 与 `workspace/` 原样保留。若新版本已写入了不兼容数据，用备份目录整体还原（先 `down`，再覆盖 `data/`，再 `up -d`）。
+把 `deploy/.env` 的 `MMBOT_IMAGE` 改回上一个 tag，重新 `up -d` 即可；数据目录与工作区目录原样保留。若新版本已写入了不兼容数据，用备份目录整体还原（先 `down`，再覆盖数据目录，再 `up -d`）。
 
 ## 故障排查
 
