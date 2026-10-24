@@ -2,7 +2,7 @@ import { resolveLanguage, translate } from "./logic/localization";
 import { useSyncExternalStore } from "react";
 import originalZh from "./i18n.zh.json";
 import mobileZh from "./i18n.mobile.zh.json";
-// Original DS Bot wording, supplemented only for mobile-specific controls.
+// Original MMBOT wording, supplemented only for mobile-specific controls.
 const zh: Record<string, string> = {
   ...originalZh,
   ...mobileZh,

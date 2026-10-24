@@ -23,7 +23,7 @@ import { Bot, Room, TeamState } from "../types";
 import { useTheme } from "../theme";
 import { BRAND_BLUE } from "../logic/colors";
 
-// Source artwork: ds-bot/src/client/characters.js, DS Bot's original characters.
+// Source artwork: ds-bot/src/client/characters.js, MMBOT's original characters.
 type Character = {
   body: string;
   shade: string;
@@ -38,7 +38,7 @@ export const characterColors = data.colors;
 export const inks = data.inks as Record<string, string[]>;
 export const mainLook = {
   id: "ds-bot",
-  name: "DS Bot",
+  name: "MMBOT",
   color: BRAND_BLUE,
   avatar: { shape: "whale" },
 };

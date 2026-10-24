@@ -291,7 +291,7 @@ export function PluginsPanel(props: PanelProps) {
       )}
       <Label muted>
         {tr(
-          "Package changes use the host plugin manager. Protected Harness and DS Bot packages remain managed on the host.",
+          "Package changes use the host plugin manager. Protected Harness and MMBOT packages remain managed on the host.",
         )}
       </Label>
     </View>

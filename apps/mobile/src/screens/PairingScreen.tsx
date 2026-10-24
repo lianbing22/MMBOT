@@ -140,7 +140,7 @@ export function PairingScreen({
       <View style={{ alignItems: "center", gap: 12, paddingBottom: 12 }}>
         <BotAvatar bot={mainLook} size={72} />
         <Text style={{ color: t.ink, fontSize: 28, fontWeight: "600" }}>
-          {tr("DS Bot")}</Text>
+          {tr("MMBOT")}</Text>
         <Label muted>{tr("Connect to your Bot team.")}</Label>
       </View>
       {Platform.OS === "web" && (

@@ -17,5 +17,5 @@ export function notificationTransportLabel(platform: string, hasCloudConfig: boo
 }
 
 export function notificationTitle(kind: string) {
-  return kind === "reply" ? "New reply from your Bot" : kind === "question" ? "Your Bot has a question" : kind === "approval" ? "A tool needs your approval" : "DS Bot";
+  return kind === "reply" ? "New reply from your Bot" : kind === "question" ? "Your Bot has a question" : kind === "approval" ? "A tool needs your approval" : "MMBOT";
 }

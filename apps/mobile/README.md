@@ -1,6 +1,6 @@
-# DS Bot Mobile
+# MMBOT
 
-An original native iOS and Android client for a user's own DSH host. This app uses the optional DS Bot mobile bridge and the shared `@ds-bot/mobile-sdk`. Bots, models, tools, and saved team data run on that host. Credential management submits new values to the host without saving them in the phone's message or draft cache.
+An original native iOS and Android client for a user's own DSH host. This app uses the optional MMBOT mobile bridge and the shared `@ds-bot/mobile-sdk`. Bots, models, tools, and saved team data run on that host. Credential management submits new values to the host without saving them in the phone's message or draft cache.
 
 ## Run
 
@@ -60,7 +60,7 @@ This redirects Expo's cache; it does not disable package, checksum, or TLS verif
 - JPEG/PNG/WebP/GIF images (10 MiB) and files of other MIME types (20 MiB), including PDF/Office/archive uploads through the host's public file-upload service. Host limits may be lower, and interpretation depends on its tools and models. Images are displayed and downloaded with conversation/session ownership checks; generic files currently display metadata without a mobile download or document viewer.
 - Camera/library/file picking. Voice recordings up to 60 seconds are transcribed by the host; Voice input leaves an editable draft. The separate Voice chat mode explicitly starts a listening → transcription → accepted reply → read-aloud loop; pause, backgrounding, interruptions, or disconnection stop recording. The host needs Voice Input configured and FFmpeg for native AAC/M4A or browser WebM normalization. No cloud ASR fallback is silently selected.
 - Host administration: connector state/connect/retry/disconnect; secret metadata, request cards, scopes, save/delete; credential configured/source/writable states; diagnostics and explicit report sharing; public Harness setting schemas with per-field edits and revision checks. Settings and new credentials require HTTPS. Loopback development permits only synthetic `ds-bot-test-` credential values and rejects all Harness setting writes.
-- Installed plugin/bundle inventory and supported enable/disable operations, workspace skill discovery, and DS Bot host-plugin update checks/install. Updating that plugin does not update the phone app. Required management/mobile plugins remain protected from disabling through the phone.
+- Installed plugin/bundle inventory and supported enable/disable operations, workspace skill discovery, and MMBOT host-plugin update checks/install. Updating that plugin does not update the phone app. Required management/mobile plugins remain protected from disabling through the phone.
 
 ## Current boundaries
 

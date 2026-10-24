@@ -43,7 +43,7 @@ export function PluginUpdateCard(props: PanelProps) {
     !props.online || action.busy || (status?.phase === "installing" || status?.dsh?.phase === "installing");
   return (
     <Card>
-      <Label>{tr("DS Bot host plugin")}</Label>
+      <Label>{tr("MMBOT host plugin")}</Label>
       <Label muted>
         {tr(
           "This updates the plugin installed in Harness. It does not update this mobile app.",
@@ -120,7 +120,7 @@ export function PluginUpdateCard(props: PanelProps) {
       {confirm && (
         <>
           <Notice
-            text={confirm === "dsh" ? tr("Install Harness {version} on your host? The connection may restart.",{version:status?.dsh?.verified || ""}) : confirm === "repair" ? tr("Reinstall DS Bot {version} from the latest release?",{version:chosenTarget.label}) : tr("Install DS Bot {p0} on your host? This may restart the plugin and interrupt the phone connection.", { p0: chosenTarget.label })}
+            text={confirm === "dsh" ? tr("Install Harness {version} on your host? The connection may restart.",{version:status?.dsh?.verified || ""}) : confirm === "repair" ? tr("Reinstall MMBOT {version} from the latest release?",{version:chosenTarget.label}) : tr("Install MMBOT {p0} on your host? This may restart the plugin and interrupt the phone connection.", { p0: chosenTarget.label })}
           />
           <Button
             title={tr("Install update")}

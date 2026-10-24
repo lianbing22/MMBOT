@@ -124,7 +124,7 @@ export function MemoryPanel({
       <Card>
         <FeatureTitle
           title={tr("Memory is turned off")}
-          hint={tr("Enable memory in the DS Bot configuration on your host.")}
+          hint={tr("Enable memory in the MMBOT configuration on your host.")}
         />
       </Card>
     );

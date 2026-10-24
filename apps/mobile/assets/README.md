@@ -1,4 +1,4 @@
-The app icons rasterize this repository's original DS Bot whale from
+The app icons rasterize this repository's original MMBOT whale from
 `ds-bot/src/client/characters.js` (`characterMarkup('whale', 'deepseek')`).
 The original SVG paths, layers, and transparent eye cutouts are retained.
 The full icon has a `#fcfcfc` background; the adaptive foreground is transparent.
