@@ -38,7 +38,7 @@ class GitHubInstallationTests(unittest.TestCase):
             raise RuntimeError("pnpm is required")
         if hashlib.sha256(ARCHIVE.read_bytes()).hexdigest() != RELEASE["sha256"]:
             raise RuntimeError("Release archive checksum mismatch")
-        if INSTALL["spec"] != f'github:QingJ01/DS-Bot-App#{INSTALL["sourceCommit"]}&path:ds-bot':
+        if INSTALL["spec"] != f'github:lianbing22/MMBOT#{INSTALL["sourceCommit"]}&path:ds-bot':
             raise RuntimeError("Install text must pin the full release source commit")
         if len(INSTALL["sourceCommit"]) != 40 or INSTALL["version"] != RELEASE["version"]:
             raise RuntimeError("Invalid release source metadata")

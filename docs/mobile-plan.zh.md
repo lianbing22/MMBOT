@@ -66,7 +66,7 @@ V1 的“文件上传成功”不等于“任意模型都理解任意格式”�
 flowchart LR
     App[React Native 手机 App] -->|HTTPS / WSS| TLS[用户主机的 HTTPS 入口]
     TLS --> Bridge[ds-bot/mobile 桥接插件]
-    Bridge --> Team[DS Bot 公开团队服务]
+    Bridge --> Team[MMBOT 公开团队服务]
     Bridge --> API[DSH 公开 Session / 上传 / 审批服务]
     Desktop[现有 DSH Desktop 或 Web] --> Team
     Team --> Runtime[同一个 DSH 运行进程]

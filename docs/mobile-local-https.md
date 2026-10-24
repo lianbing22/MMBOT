@@ -2,7 +2,7 @@
 
 English | [中文](mobile-local-https.zh.md)
 
-Update both DS Bot and the native mobile app. Local HTTPS requires no domain, Tailscale, OpenSSL executable, or certificate installation.
+Update both MMBOT and the native mobile app. Local HTTPS requires no domain, Tailscale, OpenSSL executable, or certificate installation.
 
 1. Connect the phone and computer to the same Wi-Fi and keep DSH running.
 2. On the computer, open **Settings → Mobile devices → Enable phone connection**. The plugin creates its certificate, starts HTTPS, and shows a QR code.

@@ -63,7 +63,7 @@ WORKDIR /workspace
 EXPOSE 3080
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-LABEL org.opencontainers.image.title="DS Bot" \
+LABEL org.opencontainers.image.title="MMBOT" \
       org.opencontainers.image.description="A team of long-lived Bots on DeepSeek Harness, served by dsh web" \
-      org.opencontainers.image.source="https://github.com/QingJ01/DS-Bot-App" \
+      org.opencontainers.image.source="https://github.com/lianbing22/MMBOT" \
       org.opencontainers.image.licenses="Apache-2.0"

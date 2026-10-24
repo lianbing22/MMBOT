@@ -1,4 +1,4 @@
-# 安装与配置 DS Bot
+# 安装与配置 MMBOT
 
 [English](getting-started.md) | 中文
 
@@ -13,11 +13,11 @@
 
 ## 下载配套插件和 App
 
-从公开的 [v0.1.3 Release](https://github.com/QingJ01/DS-Bot-App/releases/tag/v0.1.3) 下载配套文件：
+从公开的 [v0.1.3 Release](https://github.com/lianbing22/MMBOT/releases/tag/v0.1.3) 下载配套文件：
 
 - 插件归档：`ds-bot-0.1.3.tgz`，SHA-256：`ab65ce3033a88890c3410c371aa7a2fc8c88f96437f4620889128b6a7b1c5b1f`。
 - Android 手机：已签名的 `dsbot-android-arm64-v0.1.3.apk`；对应模拟器：`dsbot-android-x86_64-v0.1.3.apk`。
-- 桌面端：`DS-Bot-App-0.1.3-win-x64.exe` 或 macOS arm64/x64 DMG。
+- 桌面端：`MMBOT-0.1.3-win-x64.exe` 或 macOS arm64/x64 DMG。
 
 使用 `SHA256SUMS` 校验下载的 Release 文件。Actions Artifacts 是开发构建；安装请使用已发布的 Release。历史 v0.1.2 下载保持原样，以兼容已有锁文件。**不要直接安装 npm 的 `ds-bot` 来替代这个包。** npm 名称属于上游项目；本仓库的手机桥接、HTTPS 和管理功能由本仓库源码打包。
 
@@ -27,10 +27,10 @@
 2. 打开 DSH **插件 → 添加插件**，粘贴下面一整行，然后点击安装：
 
 ```text
-github:QingJ01/DS-Bot-App#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot
+github:lianbing22/MMBOT#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot
 ```
 
-3. 启用 DS Bot，完全退出并重启 DSH。
+3. 启用 MMBOT，完全退出并重启 DSH。
 4. 在 Harness 设置中配置模型与凭据；为 Chief 选择模型，发送消息确认能正常回复。
 5. 可以让 Chief 创建 Bot 与群聊，也可以用客户端的新建入口配置名称、角色、指令和模型。
 
@@ -40,7 +40,7 @@ Windows、macOS、Linux 使用同一条安装文本，不需要额外安装 Git�
 
 回到 **插件 → 添加插件**，重新粘贴上面的 GitHub 安装文本。不要继续点击旧 `.tgz` URL 的重试按钮；该按钮会继续使用旧地址。当前缺少 `integrity` 的失败安装可使用同一入口恢复。
 
-如果错误明确是旧 `0.1.0` 的 `Wanted … Got …` 校验不匹配，先在 DSH 卸载旧 DS Bot 插件，再使用上述入口安装。无需删除 DSH 数据目录、锁文件或聊天记录。安装后重启并更新配套 App。[故障说明与手动安装](plugin-install-recovery.md)。
+如果错误明确是旧 `0.1.0` 的 `Wanted … Got …` 校验不匹配，先在 DSH 卸载旧 MMBOT 插件，再使用上述入口安装。无需删除 DSH 数据目录、锁文件或聊天记录。安装后重启并更新配套 App。[故障说明与手动安装](plugin-install-recovery.md)。
 
 ### 使用 DSH Web
 
@@ -48,7 +48,7 @@ Windows、macOS、Linux 使用同一条安装文本，不需要额外安装 Git�
 
 ```sh
 npm install -g pnpm
-npx @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web add "github:QingJ01/DS-Bot-App#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot"
+npx @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web add "github:lianbing22/MMBOT#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot"
 npx @deepseek-ai/dsh@0.2.1-rc.2 web
 ```
 
@@ -57,7 +57,7 @@ npx @deepseek-ai/dsh@0.2.1-rc.2 web
 ## 手机安装与一键连接
 
 1. 手机安装已签名 ARM64 APK；系统提示时允许当前安装来源安装应用。
-2. 电脑 DS Bot 打开 **设置 → 手机设备**，点击 **Enable phone connection / 启用手机连接**。
+2. 电脑 MMBOT 打开 **设置 → 手机设备**，点击 **Enable phone connection / 启用手机连接**。
 3. 插件自动生成证书并启动 HTTPS，默认端口 `8788`。有多个网卡时选择手机能访问的 Wi-Fi 地址；防火墙提示时允许专用网络访问。
 4. 手机 App 扫描电脑上的二维码，允许相机权限；也可粘贴完整配对 JSON。
 5. 电脑核对设备名称，在待配对设备旁点击 **Approve / 批准**。手机进入会话列表后打开 Chief 发消息验证。

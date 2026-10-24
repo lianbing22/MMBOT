@@ -48,7 +48,7 @@ if (Test-Path -LiteralPath $destination) {
 
 $spec = 'ds-bot@file:' + $destination.Replace('\', '/')
 $instructions = @"
-DS Bot $($release.version) - verified local package
+MMBOT $($release.version) - verified local package
 
 Paste the following ONE line into DSH > Plugins > Add plugin, then install and enable:
 $spec

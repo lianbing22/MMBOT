@@ -130,9 +130,15 @@ const revisionOf = (ref, version) => ref === `v${version}` || ref === version ? 
   : ref?.startsWith(`v${version}-r`) && /^[1-9]\d*$/.test(ref.slice(`v${version}-r`.length)) ? Number(ref.slice(`v${version}-r`.length)) : null
 const slugOf = value => /github\.com[/:]([\w.-]+\/[\w.-]+?)(?:\.git)?$/i.exec(String(value?.url ?? value ?? ''))?.[1]
 const failure = (code, message) => Object.assign(new Error(message), { updateCode: code })
+// Installs made under this fork's earlier names, or under the upstream projects,
+// still count as ours: their updater has to move them onto this repository's
+// pinned source instead of reporting an unknown installation.
 const ownSource = source => {
   const [owner, repo] = (repoSlug() ?? '').split('/')
-  return source.owner?.toLowerCase() === owner?.toLowerCase() && [repo, 'DS-Bot', 'DeepSeek-Bot'].some(name => name?.toLowerCase() === source.repo?.toLowerCase())
+  const owners = [owner, 'QingJ01', 'Fei2411']
+  const repos = [repo, 'DS-Bot-App', 'DS-Bot', 'DeepSeek-Bot']
+  return owners.some(name => name?.toLowerCase() === source.owner?.toLowerCase())
+    && repos.some(name => name?.toLowerCase() === source.repo?.toLowerCase())
 }
 
 export function updateFailure(cause) {
@@ -274,7 +280,7 @@ export function install(rt) {
 
   function start({ targetId, repair = false } = {}) {
     if (status.phase === 'installing' || status.phase === 'installed') return view()
-    if (!enabled || !target || (!target.upgrade && !(repair && target.repair))) throw new Error('No DS Bot update is available')
+    if (!enabled || !target || (!target.upgrade && !(repair && target.repair))) throw new Error('No MMBOT update is available')
     if (targetId !== undefined && targetId !== target.id) throw new Error('The available update changed. Check for updates again.')
     const chosen = target
     Object.assign(status, { phase: 'installing', stage: 'preparing', error: null, errorCode: null })

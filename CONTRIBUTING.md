@@ -1,4 +1,4 @@
-# Contributing to DS Bot
+# Contributing to MMBOT
 
 This fork also includes [`apps/mobile/`](apps/mobile/) and [`packages/mobile-sdk/`](packages/mobile-sdk/). Run the SDK tests, App typecheck/tests and the [build workflow](.github/workflows/build.yml) for mobile changes. Android signing instructions are in [English](docs/releasing.md) / [中文](docs/releasing.zh.md); never commit signing passwords or private backups. Generated native Android/iOS directories stay ignored and are recreated with Expo prebuild.
 
@@ -6,11 +6,11 @@ Thank you for helping. This file explains how to set up the plugin, how to test 
 
 ## Pull requests
 
-Thank you for your interest in improving DS Bot. Please open an issue in [this repository](https://github.com/QingJ01/DS-Bot-App/issues) for a problem, installation question or feature request. For changes, explain the resulting behavior and relevant validation; keep host data and credentials out of reports.
+Thank you for your interest in improving MMBOT. Please open an issue in [this repository](https://github.com/lianbing22/MMBOT/issues) for a problem, installation question or feature request. For changes, explain the resulting behavior and relevant validation; keep host data and credentials out of reports.
 
 ## The rules that matter most
 
-1. **DS Bot is a DSH plugin, and only a plugin.** Do not patch DeepSeek Harness, and do not depend on files inside a DSH install. Use the plugin APIs that DSH documents (Cordis services, the plugin client entry, profile patches). When a feature needs something that DSH does not offer, open an issue here first; the fix can belong in DSH.
+1. **MMBOT is a DSH plugin, and only a plugin.** Do not patch DeepSeek Harness, and do not depend on files inside a DSH install. Use the plugin APIs that DSH documents (Cordis services, the plugin client entry, profile patches). When a feature needs something that DSH does not offer, open an issue here first; the fix can belong in DSH.
 2. **Bots run in DSH Sessions.** A Bot keeps its identity while its work runs in DSH Sessions: one for its own chat, one for each group, and a fresh one when the context fills up. Every turn runs through the normal DSH agent loop, tools and model routes. Do not add a second agent runtime.
 3. **No real secrets anywhere.** Do not commit API keys, tokens, cookies, `DSH_HOME` folders, logs or screenshots with personal data. The tests and the test bench use a scripted mock model and need no key.
 4. **Only original material.** Do not copy code, text, icons, logos or other graphics from other products or websites. Code under a license compatible with Apache 2.0 is the only exception: say where it comes from and add its notice to a `NOTICE` file.
@@ -26,7 +26,7 @@ You need:
 - For the test bench only: pnpm `11` and a checkout of DeepSeek Harness at the DSH version that the plugin is tested with.
 
 ```sh
-git clone https://github.com/QingJ01/DS-Bot-App.git ds-bot-repo
+git clone https://github.com/lianbing22/MMBOT.git ds-bot-repo
 cd ds-bot-repo/ds-bot
 
 # The plugin's own build tool (esbuild only).
@@ -104,22 +104,22 @@ For a change to the Bot browser, check it in DSH Desktop. On Linux, the scripts 
 
 ## Report a problem
 
-The easiest way is from DS Bot itself: open **Settings → Feedback**, write what happened and select **Report on GitHub**. It opens a new issue with the DS Bot and DSH versions, your system, the models and the recent errors already filled in. **Copy** puts the same text on the clipboard, and **Download** saves the full error log (`<DSH_HOME>/bot/logs/diagnostics.jsonl`).
+The easiest way is from MMBOT itself: open **Settings → Feedback**, write what happened and select **Report on GitHub**. It opens a new issue with the MMBOT and DSH versions, your system, the models and the recent errors already filled in. **Copy** puts the same text on the clipboard, and **Download** saves the full error log (`<DSH_HOME>/bot/logs/diagnostics.jsonl`).
 
 If you open an issue by hand, include:
 
 - The DSH version (DSH Desktop or `@deepseek-ai/dsh`), your operating system, and whether you use DSH Desktop or DSH Web.
-- How you installed DS Bot (npm, release file, Git address or command line) and its version.
+- How you installed MMBOT (npm, release file, Git address or command line) and its version.
 - What you did, what you expected and what happened, with the exact error text.
 - A screenshot of the whole window, with the chat and the error.
 - The steps that make it happen again.
 
-DS Bot removes API keys, tokens, saved secrets and your home folder from its diagnostics. Read the text before you post it, and remove personal data from screenshots.
+MMBOT removes API keys, tokens, saved secrets and your home folder from its diagnostics. Read the text before you post it, and remove personal data from screenshots.
 
 For a security problem, do not open a public issue. Use **Report a vulnerability** on the repository's **Security** tab.
 
-Use [this repository's Issues](https://github.com/QingJ01/DS-Bot-App/issues) for bugs, installation questions and feature requests.
+Use [this repository's Issues](https://github.com/lianbing22/MMBOT/issues) for bugs, installation questions and feature requests.
 
 ## License
 
-DS Bot is licensed under the [Apache License 2.0](LICENSE). When you submit a contribution, you agree that it is licensed under the same license, as section 5 of the license says.
+MMBOT is licensed under the [Apache License 2.0](LICENSE). When you submit a contribution, you agree that it is licensed under the same license, as section 5 of the license says.

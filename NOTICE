@@ -1,3 +1,16 @@
+MMBOT
+Copyright 2026 the MMBOT contributors
+
+MMBOT is a rebranded fork of DS Bot App (https://github.com/QingJ01/DS-Bot-App),
+which in turn builds on Fei2411's DeepSeek-Bot
+(https://github.com/Fei2411/DeepSeek-Bot). Both are Apache-2.0. This fork
+changes product naming and branding, repository and release metadata, CI and
+documentation. The upstream notice follows unchanged.
+
+==============================================================================
+Upstream notice
+==============================================================================
+
 DS Bot
 Copyright 2026 Fei2411 and the DS Bot contributors
 
@@ -76,7 +89,7 @@ Copyright (c) Andrea Giammarchi). Vite is a build tool only.
 Projects that gave us ideas (no code copied)
 ==============================================================================
 
-We thank these projects for the designs they published. DS Bot learned from
+We thank these projects for the designs they published. MMBOT learned from
 their ideas; it does not contain their code.
 
   - AgentMemoryRepo (https://github.com/AgentMemoryRepo/agentmemoryrepo), MIT:

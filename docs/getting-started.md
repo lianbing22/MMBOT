@@ -1,4 +1,4 @@
-# Install and configure DS Bot
+# Install and configure MMBOT
 
 English | [中文](getting-started.zh.md)
 
@@ -10,11 +10,11 @@ The official npm integration baseline is DSH `0.2.1-rc.2`. Keep API keys in DSH'
 
 ## Download matching packages
 
-Download matching files from the public [v0.1.3 Release](https://github.com/QingJ01/DS-Bot-App/releases/tag/v0.1.3):
+Download matching files from the public [v0.1.3 Release](https://github.com/lianbing22/MMBOT/releases/tag/v0.1.3):
 
 - Plugin archive: `ds-bot-0.1.3.tgz` — SHA-256 `ab65ce3033a88890c3410c371aa7a2fc8c88f96437f4620889128b6a7b1c5b1f`.
 - Android phone: signed `dsbot-android-arm64-v0.1.3.apk`; matching emulator: `dsbot-android-x86_64-v0.1.3.apk`.
-- Desktop: `DS-Bot-App-0.1.3-win-x64.exe` or the macOS arm64/x64 DMG.
+- Desktop: `MMBOT-0.1.3-win-x64.exe` or the macOS arm64/x64 DMG.
 
 Verify downloaded release assets with `SHA256SUMS`. The Actions artifacts are development builds; use the published release assets for installation. Historical v0.1.2 downloads remain unchanged for existing lockfiles. **The npm package `ds-bot` is upstream and does not contain this fork's complete mobile implementation.**
 
@@ -24,10 +24,10 @@ Verify downloaded release assets with `SHA256SUMS`. The Actions artifacts are de
 2. Open **Plugins → Add plugin**, paste this complete line and install:
 
 ```text
-github:QingJ01/DS-Bot-App#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot
+github:lianbing22/MMBOT#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot
 ```
 
-3. Enable DS Bot, fully quit and restart DSH.
+3. Enable MMBOT, fully quit and restart DSH.
 4. Configure your provider and credential in Harness settings. Choose Chief's model and test a message.
 5. Ask Chief to create Bots/groups, or use the creation pages to set names, roles, instructions and models.
 
@@ -37,13 +37,13 @@ Windows, macOS and Linux use the same installation text. No separate Git, Node.j
 
 Return to **Plugins → Add plugin** and paste the GitHub specification above. Retrying an old `.tgz` URL keeps using that old address. The current missing-`integrity` failure can recover through the same GitHub entry.
 
-If the error instead reports a legacy `0.1.0` checksum mismatch (`Wanted … Got …`), uninstall the old DS Bot plugin in DSH first, then install using the specification above. Do not delete DSH data, lockfiles or chats. Restart afterward and update the matching App. [Troubleshooting and manual installation](plugin-install-recovery.md).
+If the error instead reports a legacy `0.1.0` checksum mismatch (`Wanted … Got …`), uninstall the old MMBOT plugin in DSH first, then install using the specification above. Do not delete DSH data, lockfiles or chats. Restart afterward and update the matching App. [Troubleshooting and manual installation](plugin-install-recovery.md).
 
 For DSH Web, install Node.js 24 LTS and pnpm on the server, then run:
 
 ```sh
 npm install -g pnpm
-npx @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web add "github:QingJ01/DS-Bot-App#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot"
+npx @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web add "github:lianbing22/MMBOT#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot"
 npx @deepseek-ai/dsh@0.2.1-rc.2 web
 ```
 
@@ -52,7 +52,7 @@ Open the local authenticated link printed by DSH on your computer and configure 
 ## Phone installation and pairing
 
 1. Install the signed ARM64 APK; allow this installation source when Android prompts.
-2. On the computer, open DS Bot Settings → Mobile devices → Enable phone connection. The plugin generates a certificate and starts HTTPS, normally on port `8788`. Select the reachable Wi-Fi interface if the host has several adapters; allow private-network firewall access when prompted.
+2. On the computer, open MMBOT Settings → Mobile devices → Enable phone connection. The plugin generates a certificate and starts HTTPS, normally on port `8788`. Select the reachable Wi-Fi interface if the host has several adapters; allow private-network firewall access when prompted.
 3. In the native App, scan the QR (camera permission required), or paste the complete pairing JSON.
 4. On the computer, check the device name and approve it. Open Chief on the phone and send a message.
 

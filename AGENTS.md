@@ -4,7 +4,7 @@ Instructions for AI coding agents that work on this repository. Human contributo
 
 ## What this project is
 
-DS Bot is a team of long-lived Bots, built on DeepSeek Harness (DSH). This repository has three parts:
+MMBOT is a team of long-lived Bots, built on DeepSeek Harness (DSH). This repository has three parts:
 
 - `ds-bot/`: the Bot features, written as a DSH plugin. It turns DSH Desktop and DSH Web into a team of long-lived Bots, and its mobile bridge connects the phone app.
 - `app/`: the desktop app for Windows, macOS and Linux. It runs a pinned DSH with the `ds-bot` plugin, in its own profile and its own `DSH_HOME`, and imports an existing team from the user's DSH.
@@ -48,7 +48,7 @@ A change is done when `npm test`, the `--check` and `npm run lint` pass; CI runs
 
 The full workflow is in [CONTRIBUTING.md](CONTRIBUTING.md). The parts that an agent must follow:
 
-- Open an issue in [this repository](https://github.com/QingJ01/DS-Bot-App/issues) for a problem, an installation question or a feature request; for a change, explain the resulting behavior and its validation.
+- Open an issue in [this repository](https://github.com/lianbing22/MMBOT/issues) for a problem, an installation question or a feature request; for a change, explain the resulting behavior and its validation.
 - Keep the user's host data and credentials out of reports, commits and screenshots.
 - Add a change that users can see to `CHANGELOG.md` under "Unreleased".
 - Do not close an issue without evidence: the pull request or commit that fixed it, the issue it duplicates, or the reason it will not be fixed.

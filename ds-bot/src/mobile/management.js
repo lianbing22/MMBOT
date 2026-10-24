@@ -131,7 +131,7 @@ export function createManagement(rt, { optional, conversation, redact }) {
         const inspected = await manager.inspect(spec, undefined, signal)
         signal.throwIfAborted()
         if (inspected.status !== 'accepted') throw failure(400, 'mobile/package-refused', 'The host refused this package. Inspect it again before installing.')
-        if (selfModule(inspected.name)) throw failure(409, 'mobile/required-plugin', 'Update DS Bot through its dedicated update flow on the host')
+        if (selfModule(inspected.name)) throw failure(409, 'mobile/required-plugin', 'Update MMBOT through its dedicated update flow on the host')
         if (inspected.kind === 'registry' && inspected.name && inspected.version && spec !== `${inspected.name}@${inspected.version}`) throw failure(409, 'mobile/package-changed', 'Inspect and confirm the exact registry package version before installing')
         run = () => manager.installBundle(spec, { requestId: key, ...(body.approvedBuilds ? { approvedBuilds: body.approvedBuilds } : {}) })
       } else {
@@ -160,7 +160,7 @@ export function createManagement(rt, { optional, conversation, redact }) {
     const isBundle = endpoint === 'bundle-set-enabled'
     const item = (isBundle ? bundles : plugins).find(entry => (isBundle ? entry.name : entry.entryId) === body.id)
     if (!item) throw failure(404, 'mobile/not-found', 'This plugin or bundle is not installed on the host')
-    if ((isBundle ? selfBundle(item) : selfEntry(item))) throw failure(409, 'mobile/required-plugin', 'Manage DS Bot from the host to keep this mobile connection available')
+    if ((isBundle ? selfBundle(item) : selfEntry(item))) throw failure(409, 'mobile/required-plugin', 'Manage MMBOT from the host to keep this mobile connection available')
     if (item.readOnlyReason) throw failure(409, 'mobile/protected-plugin', 'The host protects this plugin from direct changes')
     signal.throwIfAborted()
     let result

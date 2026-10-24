@@ -118,7 +118,7 @@ export async function createNotificationHub({ home, adapter, authorized, active,
         tokens.set(deviceId,body.token); return {ok:true}
       }
       if (endpoint === 'notifications-unregister') { tokens.delete(deviceId); return {ok:true} }
-      if (endpoint === 'notifications-test') { if (!tokens.has(deviceId)) throw new BridgeError(409,'PUSH_NOT_REGISTERED','Enable system notifications first'); await sendPush([tokens.get(deviceId)],{id:0,kind:'test',title:'DS Bot 通知测试',createdAt:Date.now()}); return {ok:true} }
+      if (endpoint === 'notifications-test') { if (!tokens.has(deviceId)) throw new BridgeError(409,'PUSH_NOT_REGISTERED','Enable system notifications first'); await sendPush([tokens.get(deviceId)],{id:0,kind:'test',title:'MMBOT 通知测试',createdAt:Date.now()}); return {ok:true} }
       throw new BridgeError(404,'NOT_FOUND','Unknown notification action')
     },
     revoke(id) { tokens.delete(id); dropBackground(id); delete state.devices[id]; void persist().catch(() => {}) },
@@ -127,7 +127,7 @@ export async function createNotificationHub({ home, adapter, authorized, active,
 }
 export async function expoPush(tokens, item, serverId) {
   for (let start=0; start<tokens.length; start+=100) {
-    const result=await fetch('https://exp.host/--/api/v2/push/send', {method:'POST',headers:{'content-type':'application/json'},signal:AbortSignal.timeout(7000),body:JSON.stringify(tokens.slice(start,start+100).map(to=>({to,title:item.title,body:'打开 DS Bot 查看详情',sound:'default',channelId:'ds-bot',data:{serverId,conversationId:item.conversationId,notificationId:item.id},priority:'high',ttl:3600})))})
+    const result=await fetch('https://exp.host/--/api/v2/push/send', {method:'POST',headers:{'content-type':'application/json'},signal:AbortSignal.timeout(7000),body:JSON.stringify(tokens.slice(start,start+100).map(to=>({to,title:item.title,body:'打开 MMBOT 查看详情',sound:'default',channelId:'ds-bot',data:{serverId,conversationId:item.conversationId,notificationId:item.id},priority:'high',ttl:3600})))})
     if(!result.ok)throw new Error('Push relay did not accept this notification')
     const response=await result.json()
     if(response.errors?.length || response.data?.some(item=>item.status==='error'))throw new Error('Push registration needs attention')

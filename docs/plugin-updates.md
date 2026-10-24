@@ -2,7 +2,7 @@
 
 English · [中文](plugin-updates.zh.md)
 
-On the desktop, open **DS Bot Settings → Plugin updates**. On the phone, open **Settings → Plugin updates**. **About DS Bot** keeps the same update controls. This updates the computer's plugin; the phone App is updated separately from Releases.
+On the desktop, open **MMBOT Settings → Plugin updates**. On the phone, open **Settings → Plugin updates**. **About MMBOT** keeps the same update controls. This updates the computer's plugin; the phone App is updated separately from Releases.
 
 1. Select **Check for updates**. The page shows the installed version and the newest complete release, including revisions such as `v0.1.1-r2`.
 2. Select **Update** on the desktop, or **Update host plugin → Install update** on the phone.
@@ -14,7 +14,7 @@ The updater uses this repository's GitHub releases for registry, local archive, 
 
 If the current version is already the newest release, **Repair installation** reinstalls that release after confirmation. It retains the Bot team and conversations. Unknown same-version source commits are offered repair explicitly instead of being silently replaced. A newer version is never downgraded to an older release.
 
-Installation names the dependency explicitly, for example `ds-bot@github:QingJ01/DS-Bot-App#<full-commit>&path:ds-bot`. This makes pnpm replace an old tarball dependency before resolving it, avoiding the legacy URL/checksum and cached-tarball integrity failures. Each update stays pinned to a commit; published tarball URLs, source tags and existing checksums are not overwritten.
+Installation names the dependency explicitly, for example `ds-bot@github:lianbing22/MMBOT#<full-commit>&path:ds-bot`. This makes pnpm replace an old tarball dependency before resolving it, avoiding the legacy URL/checksum and cached-tarball integrity failures. Each update stays pinned to a commit; published tarball URLs, source tags and existing checksums are not overwritten.
 
 The updater does not delete the profile lockfile, prune the shared store, disable verification, remove other plugins or automatically approve build scripts. DSH manages installation and failure restoration. A failed update remains retryable; network limits, verification, compatibility, disk space, locked files and build approvals have specific guidance. Failures in another dependency can still require repair through **Harness Plugins**.
 

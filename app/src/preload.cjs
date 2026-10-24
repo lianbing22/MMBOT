@@ -7,7 +7,7 @@ const { contextBridge, ipcRenderer } = require('electron')
 
 const host = process.argv.find(value => value.startsWith('--ds-bot-origin='))?.slice('--ds-bot-origin='.length)
 if (host !== undefined && location.origin === host) {
-  // DS Bot's settings show and move the app's data location through this.
+  // MMBOT's settings show and move the app's data location through this.
   contextBridge.exposeInMainWorld('dsBotApp', {
     dataLocation: () => ipcRenderer.invoke('ds-bot:data-location'),
     moveData: (workspace) => ipcRenderer.invoke('ds-bot:move-data', typeof workspace === 'string' ? workspace : undefined),
@@ -36,7 +36,7 @@ function browserBridge() {
   ipcRenderer.on('ds-bot:browser-open-requested', (_event, request) => {
     if (typeof request?.lease !== 'string' || typeof request.url !== 'string') return
     for (const listener of [...(listeners.get(request.lease) ?? [])]) {
-      try { listener(request.url) } catch (error) { console.error('DeepSeek Bot: a browser link handler failed', error) }
+      try { listener(request.url) } catch (error) { console.error('MMBOT: a browser link handler failed', error) }
     }
   })
   return {

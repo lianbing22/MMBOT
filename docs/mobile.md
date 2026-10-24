@@ -12,11 +12,11 @@ Development, builds and automated checks run in the cloud; device installation, 
 
 The iOS/Android source preview connects to **your own running DSH host**. The React Native app, portable SDK and optional host Bridge live in `apps/mobile/`, `packages/mobile-sdk/` and `ds-bot/src/mobile/`. The Bridge uses protocol version 1 and the same DSH process, team and data as Desktop/Web. It does not start another agent runtime or a cloud account service.
 
-The [original implementation plan, in Chinese](mobile-plan.zh.md) records the broader roadmap. The [parity matrix, in Chinese](mobile-parity.zh.md) records the original DS Bot/Harness behavior and platform boundaries. This guide describes the current setup and limits. Commands and acceptance cases below are instructions, not evidence that a particular device or release build has passed them.
+The [original implementation plan, in Chinese](mobile-plan.zh.md) records the broader roadmap. The [parity matrix, in Chinese](mobile-parity.zh.md) records the original MMBOT/Harness behavior and platform boundaries. This guide describes the current setup and limits. Commands and acceptance cases below are instructions, not evidence that a particular device or release build has passed them.
 
 ## Prerequisites
 
-- DSH `0.2.1-alpha.1` with DS Bot from this checkout and a working model configuration. Set up Chief's model on the host first.
+- DSH `0.2.1-alpha.1` with MMBOT from this checkout and a working model configuration. Set up Chief's model on the host first.
 - Node.js `22.19` or later and the [repository development prerequisites](../CONTRIBUTING.md#setup) for building the plugin.
 - For a phone: an HTTPS address reachable from it, with a certificate trusted by the device. A private VPN with HTTPS is suitable. A VPN alone does not make an HTTP URL an HTTPS URL.
 - For native development: Android SDK/JDK and an emulator or device; for local iOS builds, macOS/Xcode and the required signing setup. Supported cloud builds are another option, with their own account and signing requirements.
@@ -108,7 +108,7 @@ npm run android
 
 On macOS, use `npm run ios` for iOS. These use Expo development builds and need their native SDKs; Expo Go is not the acceptance environment. After installing a development build, `npm start` runs Metro for it. Configure your own application identifiers and signing before distributing a release; credentials and signing material must stay out of the repository.
 
-1. On the host, open DS Bot **Settings → Mobile devices** and generate a pairing code.
+1. On the host, open MMBOT **Settings → Mobile devices** and generate a pairing code.
 2. In the app, scan the QR code or paste its complete pairing JSON. Check the host identity and enter a device name.
 3. Confirm the pending device on the host. The one-time pairing code alone does not grant access.
 4. Open Chief or an existing Bot/group. A Bot's conversation continues across its internal context parts.
@@ -158,11 +158,11 @@ For restricted build hosts, Java/Gradle may need explicit proxy configuration ev
 
 ## Team and host settings
 
-Bot/group details, Main Bot roles, appearance, memory, schedules and usage use the same host team state. Online history search queries the host across conversation parts; it requires a connection. Host configuration exposes supported schema fields with revision checks, existing credential references, plugin package inspection/installation/removal and activation, scoped Skills discovery/invocation and library management, and the DS Bot host plugin updater. Language can follow the host or system, or be set locally to English/Chinese. Main navigation and settings have native translations; some detailed statuses, errors and plugin-provided descriptions still fall back to English.
+Bot/group details, Main Bot roles, appearance, memory, schedules and usage use the same host team state. Online history search queries the host across conversation parts; it requires a connection. Host configuration exposes supported schema fields with revision checks, existing credential references, plugin package inspection/installation/removal and activation, scoped Skills discovery/invocation and library management, and the MMBOT host plugin updater. Language can follow the host or system, or be set locally to English/Chinese. Main navigation and settings have native translations; some detailed statuses, errors and plugin-provided descriptions still fall back to English.
 
 Connectors and Secrets display metadata and permissions. New values are masked, submitted once over HTTPS and cleared on submission or leaving the foreground; they are never placed in drafts, cache, replay queues or responses. Feedback previews diagnostics locally; copying, exporting logs and opening an issue each require a user action. No report is sent automatically.
 
-Complex conditional configuration forms, adding/removing collection entries and custom browser-only plugin pages still require the host's corresponding settings page. Existing collection values can be edited individually. Plugin changes report when a host restart is needed or another profile overrides the change. The DS Bot plugin that maintains the connection must be managed on the host. The host plugin updater does not update this phone app.
+Complex conditional configuration forms, adding/removing collection entries and custom browser-only plugin pages still require the host's corresponding settings page. Existing collection values can be edited individually. Plugin changes report when a host restart is needed or another profile overrides the change. The MMBOT plugin that maintains the connection must be managed on the host. The host plugin updater does not update this phone app.
 
 ## Data and current limits
 
@@ -216,7 +216,7 @@ For a local mock host with the browser preview, choose free ports and start a be
 MOBILE_PORT=8894 MOBILE_WEB_ORIGIN=http://localhost:8081 dev/bench.sh mobile 3193 8893 start
 ```
 
-In another terminal, run `npm run web -- --port 8081` from `apps/mobile/`. Open the preview as `http://localhost:8081`; its exact origin must match the bench allowlist. Pair through the bench's authenticated DS Bot **Mobile devices** page. When finished, run `dev/bench.sh mobile 3193 8893 stop` from `ds-bot/` and stop Metro. `start` preserves existing bench data; use a different bench name for a fresh dataset.
+In another terminal, run `npm run web -- --port 8081` from `apps/mobile/`. Open the preview as `http://localhost:8081`; its exact origin must match the bench allowlist. Pair through the bench's authenticated MMBOT **Mobile devices** page. When finished, run `dev/bench.sh mobile 3193 8893 stop` from `ds-bot/` and stop Metro. `start` preserves existing bench data; use a different bench name for a fresh dataset.
 
 For browser/simulator work only, Bridge can explicitly enable `devAllowInsecure: true` on a loopback HTTP listener, and the app's development-only HTTP option must also be enabled. Do not bind this to a LAN address. A physical phone's `localhost` is the phone itself; use HTTPS to reach the computer. Browser-preview credentials are memory-only and disappear on reload.
 

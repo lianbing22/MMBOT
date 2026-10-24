@@ -21,7 +21,7 @@ test('the app has the version of ds-bot', () => {
   const lock = read('../package-lock.json')
   const plugin = read('../../ds-bot/package.json')
   assert.equal(app.name, 'ds-bot-app-desktop')
-  assert.equal(app.productName, 'DS Bot App')
+  assert.equal(app.productName, 'MMBOT')
   assert.equal(app.version, plugin.version)
   assert.equal(lock.packages[''].name, app.name)
   assert.equal(lock.packages[''].version, app.version)

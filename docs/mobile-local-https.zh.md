@@ -2,7 +2,7 @@
 
 [English](mobile-local-https.md) | 中文
 
-更新 DS Bot 插件与手机 App 后，可以直接通过局域网 HTTPS 连接。无需域名、Tailscale、OpenSSL 或手动安装证书。
+更新 MMBOT 插件与手机 App 后，可以直接通过局域网 HTTPS 连接。无需域名、Tailscale、OpenSSL 或手动安装证书。
 
 1. 手机和电脑连接同一个 Wi-Fi；电脑保持 DSH 运行。
 2. 电脑端打开「设置 → 手机设备」，点击 **Enable phone connection**（启用手机连接）。插件自动生成证书、启动 HTTPS 并显示二维码。

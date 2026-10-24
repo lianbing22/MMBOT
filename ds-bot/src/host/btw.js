@@ -21,7 +21,7 @@ const BTW_PROMPT = [
   'Never claim to have done anything.',
 ].join('\n')
 const BTW_RETRY = 'Do not call any tool. Answer in text only.'
-const RESTART_ERROR = 'DS Bot restarted before this answer finished.'
+const RESTART_ERROR = 'MMBOT restarted before this answer finished.'
 const TOOL_ERROR = 'The model called a tool again after being told not to, so this aside was not answered.'
 const EMPTY_ERROR = 'The model wrote nothing.'
 // Events that still belong to a turn. A model selection or a title does not.
@@ -320,7 +320,7 @@ export function install(rt) {
   }
 
   const abandoned = botId => disposing || dropped.has(botId) || rt.botOf(botId) === undefined
-  const stopError = (botId) => new Error(disposing && !dropped.has(botId) && rt.botOf(botId) !== undefined ? 'DS Bot is stopping.' : 'Unknown Bot')
+  const stopError = (botId) => new Error(disposing && !dropped.has(botId) && rt.botOf(botId) !== undefined ? 'MMBOT is stopping.' : 'Unknown Bot')
 
   // Wait until every targeted flight has left. A call still inside resolveAgent
   // has no `done` yet; yielding lets it notice disposal and drop the slot.

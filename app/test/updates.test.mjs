@@ -36,10 +36,10 @@ const release = (version, options = {}) => {
   const arch = options.arch ?? 'arm64'
   return {
     tag_name: `v${version}`,
-    html_url: options.page ?? `https://github.com/QingJ01/DS-Bot-App/releases/tag/v${version}`,
+    html_url: options.page ?? `https://github.com/lianbing22/MMBOT/releases/tag/v${version}`,
     draft: options.draft ?? false,
     prerelease: options.prerelease ?? false,
-    assets: options.assets ?? [{ name: `DS-Bot-App-${version}-mac-${arch}.zip` }],
+    assets: options.assets ?? [{ name: `MMBOT-${version}-mac-${arch}.zip` }],
   }
 }
 
@@ -90,7 +90,7 @@ describe('watchReleases', () => {
   })
 
   test('reports a newer release and opens its page only when accepted', async (t) => {
-    const page = 'https://github.com/QingJ01/DS-Bot-App/releases/tag/v0.1.9'
+    const page = 'https://github.com/lianbing22/MMBOT/releases/tag/v0.1.9'
     for (const accepted of [true, false]) {
       const asked = []
       const opened = []
@@ -162,10 +162,10 @@ describe('watchReleases', () => {
 
   test('logs failed requests, invalid JSON, and non-HTTPS release pages without throwing', async (t) => {
     const cases = [
-      [async () => releaseResponse({}, 403), 'DS Bot App: update check failed: HTTP 403'],
-      [async () => { throw new Error('offline') }, 'DS Bot App: update check failed: offline'],
-      [async () => ({ ok: true, status: 200, json: async () => { throw new Error('bad JSON') } }), 'DS Bot App: update check failed: bad JSON'],
-      [async () => releaseResponse([release('0.1.9', { page: 'http://github.com/QingJ01/DS-Bot-App' })]), 'DS Bot App: update check failed: release page URL is not HTTPS'],
+      [async () => releaseResponse({}, 403), 'MMBOT: update check failed: HTTP 403'],
+      [async () => { throw new Error('offline') }, 'MMBOT: update check failed: offline'],
+      [async () => ({ ok: true, status: 200, json: async () => { throw new Error('bad JSON') } }), 'MMBOT: update check failed: bad JSON'],
+      [async () => releaseResponse([release('0.1.9', { page: 'http://github.com/lianbing22/MMBOT' })]), 'MMBOT: update check failed: release page URL is not HTTPS'],
     ]
     for (const [fetch, message] of cases) {
       const log = quietLog()
@@ -183,7 +183,7 @@ describe('watchReleases', () => {
     })
     t.after(updates.stop)
     assert.equal(await updates.latest(), null)
-    assert.deepEqual(log.lines, ['DS Bot App: update check failed: releases response is not an array'])
+    assert.deepEqual(log.lines, ['MMBOT: update check failed: releases response is not an array'])
   })
 
   test('waits for the matching-architecture zip before asking', async (t) => {
@@ -206,7 +206,7 @@ describe('watchReleases', () => {
     attached = true
     t.mock.timers.tick(4 * 60 * 60_000)
     assert.deepEqual(await updates.latest(), {
-      version: '0.1.9', page: 'https://github.com/QingJ01/DS-Bot-App/releases/tag/v0.1.9',
+      version: '0.1.9', page: 'https://github.com/lianbing22/MMBOT/releases/tag/v0.1.9',
     })
     await sleep(0)
     assert.deepEqual(asked, ['0.1.9'])
@@ -251,7 +251,7 @@ describe('watchReleases', () => {
     })
     t.after(updates.stop)
     assert.deepEqual(await updates.latest(), {
-      version: '0.2.0-rc.2', page: 'https://github.com/QingJ01/DS-Bot-App/releases/tag/v0.2.0-rc.2',
+      version: '0.2.0-rc.2', page: 'https://github.com/lianbing22/MMBOT/releases/tag/v0.2.0-rc.2',
     })
   })
 
@@ -273,7 +273,7 @@ describe('watchReleases', () => {
     })
     t.after(updates.stop)
     assert.deepEqual(await updates.latest(), {
-      version: '0.1.10', page: 'https://github.com/QingJ01/DS-Bot-App/releases/tag/v0.1.10',
+      version: '0.1.10', page: 'https://github.com/lianbing22/MMBOT/releases/tag/v0.1.10',
     })
   })
 
@@ -290,7 +290,7 @@ describe('watchReleases', () => {
     t.after(updates.stop)
     await updates.latest()
     await sleep(20)
-    assert.deepEqual(log.lines, ['DS Bot App: update 0.1.9 available', 'DS Bot App: update 0.1.9 not opened: dialog failed'])
+    assert.deepEqual(log.lines, ['MMBOT: update 0.1.9 available', 'MMBOT: update 0.1.9 not opened: dialog failed'])
     assert.deepEqual(unhandled, [])
   })
 
@@ -351,7 +351,7 @@ describe('watchUpdates', () => {
       await sleep(20)
       assert.deepEqual(updater.installs, [])
       assert.equal(stopped, false)
-      assert.deepEqual(log.lines, ['DS Bot App: update 0.1.9 downloaded'])
+      assert.deepEqual(log.lines, ['MMBOT: update 0.1.9 downloaded'])
     }
   })
 
@@ -362,7 +362,7 @@ describe('watchUpdates', () => {
     const updates = watchUpdates({ updater, beforeInstall: async () => {}, log })
     t.after(updates.stop)
     assert.equal(await updates.latest(), null)
-    assert.deepEqual(log.lines, ['DS Bot App: update failed: offline'])
+    assert.deepEqual(log.lines, ['MMBOT: update failed: offline'])
   })
 
   test('tells what the newest check found and whether its download finished', async (t) => {

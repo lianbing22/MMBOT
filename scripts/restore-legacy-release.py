@@ -8,7 +8,7 @@ import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-REPOSITORY = "QingJ01/DS-Bot-App"
+REPOSITORY = "lianbing22/MMBOT"
 TAG = "v0.1.0"
 PLUGIN = "ds-bot-0.1.0.tgz"
 ARCHIVED = "ds-bot-0.1.0-republished.tgz"

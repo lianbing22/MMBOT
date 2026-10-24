@@ -90,7 +90,7 @@ npx @deepseek-ai/dsh@0.2.1-alpha.1 web --patch "$HOME/mobile.patch.yml" --port 3
 ssh -N -L 3080:127.0.0.1:3080 用户名@VPS地址
 ```
 
-保持 SSH 转发运行，在电脑浏览器打开 DSH 启动输出中的本机登录链接（端口 `3080`）。在 Harness 设置中添加模型提供方、配置凭据，再为 DS Bot 的 Chief 选择模型，发送一条消息确认回复正常。
+保持 SSH 转发运行，在电脑浏览器打开 DSH 启动输出中的本机登录链接（端口 `3080`）。在 Harness 设置中添加模型提供方、配置凭据，再为 MMBOT 的 Chief 选择模型，发送一条消息确认回复正常。
 
 DSH 终端按 `Ctrl+B`，松开后按 `D`，即可退出 tmux 界面并保持服务运行。以后用 `tmux attach -t dsbot` 返回。VPS 重启后需要重新启动 DSH；需要开机自启时再配置系统服务。
 
@@ -156,7 +156,7 @@ tailscale serve status
 ## 5. 安装手机 App 并配对
 
 1. Android 安装与主机插件配套的 **ARM64 APK**。需要自行构建时，见[Android APK 构建说明](mobile.zh.md#构建个人测试用-android-apk)。
-2. 主机打开 **DS Bot → Settings → Mobile devices → Create pairing code**。
+2. 主机打开 **MMBOT → Settings → Mobile devices → Create pairing code**。
 3. 手机 App 扫描二维码，或粘贴完整的 **Manual pairing data** JSON，填写设备名称。
 4. 回到主机，在待配对设备旁点击 **Approve**。
 5. 手机打开 Chief，发送消息确认连接成功。
@@ -167,7 +167,7 @@ tailscale serve status
 
 Android 打开 **设置 → 通知中心 → 开启后台运行提醒**，允许系统通知权限。通知栏出现常驻提醒后，按 Home 切到其他 App，检查任务完成通知。
 
-这条方式无需 FCM/APNs，但主机必须运行、手机必须能连接；Tailscale 方案还需保持 VPN。强制停止或划掉 App 会停止接收。收不到提醒时，检查手机对 DS Bot 和 VPN 的后台、电池限制。主机重启后，回到 App 重连。
+这条方式无需 FCM/APNs，但主机必须运行、手机必须能连接；Tailscale 方案还需保持 VPN。强制停止或划掉 App 会停止接收。收不到提醒时，检查手机对 MMBOT 和 VPN 的后台、电池限制。主机重启后，回到 App 重连。
 
 ## 连接失败时
 

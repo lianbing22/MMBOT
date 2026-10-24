@@ -278,7 +278,7 @@ jobs:
             done
             gh release upload "$publish_tag" "$plugin_file" ./*.apk "$sums_file" \
               --repo "$REPOSITORY"
-            gh release edit "$publish_tag" --repo "$REPOSITORY" --title "DS Bot $publish_tag" \
+            gh release edit "$publish_tag" --repo "$REPOSITORY" --title "MMBOT $publish_tag" \
               --notes-file "$notes"
           else
             if gh release view "$publish_tag" --repo "$REPOSITORY" >/dev/null 2>&1; then
@@ -286,5 +286,5 @@ jobs:
               exit 1
             fi
             gh release create "$publish_tag" "$plugin_file" ./*.apk "$sums_file" DeepSeekBot.cer "${desktop_assets[@]}" \
-              --repo "$REPOSITORY" --title "DS Bot $publish_tag" --notes-file "$notes" --verify-tag
+              --repo "$REPOSITORY" --title "MMBOT $publish_tag" --notes-file "$notes" --verify-tag
           fi

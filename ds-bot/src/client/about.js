@@ -1,4 +1,4 @@
-// Settings → About DS Bot: the version, updates for DS Bot and DSH, and the links to
+// Settings → About MMBOT: the version, updates for MMBOT and DSH, and the links to
 // the repository. The sidebar's cloud button shows the same update state.
 import { createElement as h, useEffect, useState } from 'react'
 import { GitHubMark } from './connectors.js'
@@ -16,13 +16,13 @@ const CHEER_MS = 1800
 const starCount = count => new Intl.NumberFormat(dateLocale(), { notation: 'compact', maximumFractionDigits: 1 }).format(count)
 
 function botHint(update) {
-  if (update.phase === 'installing') return t('Updating DS Bot…')
-  if (update.phase === 'installed') return update.restartRequired ? t('Restart DSH to start using DS Bot {version}.', { version: update.installed ?? update.latest }) : t('Update installed. Reload this window.')
+  if (update.phase === 'installing') return t('Updating MMBOT…')
+  if (update.phase === 'installed') return update.restartRequired ? t('Restart DSH to start using MMBOT {version}.', { version: update.installed ?? update.latest }) : t('Update installed. Reload this window.')
   if (update.phase === 'failed') return t('The update did not finish: {reason}', { reason: hostText(update.error ?? '') })
-  if (update.available) return t('DS Bot {version} is available', { version: update.latestRef ?? update.latest })
+  if (update.available) return t('MMBOT {version} is available', { version: update.latestRef ?? update.latest })
   if (update.checkError) return hostText(update.checkError)
   if (update.blockedReason) return hostText(update.blockedReason)
-  if (update.source === 'app') return t('Updates come with the DS Bot App.')
+  if (update.source === 'app') return t('Updates come with the MMBOT.')
   if (update.enabled === false) return t('Update checks are off.')
   if (update.source === 'path') return t('Installed from a local folder; update it there.')
   if (!update.checkedAt) return null
@@ -35,7 +35,7 @@ function dshHint(dsh, shown) {
   if (dsh.phase === 'installing') return t('Updating DSH…')
   if (dsh.phase === 'installed') return t('Restart DSH to start using DSH {version}.', { version: dsh.installed ?? dsh.verified })
   if (dsh.phase === 'failed') return t('The update did not finish: {reason}', { reason: hostText(dsh.error ?? '') })
-  if (dsh.available === false && dsh.blockedBy) return t('Update DS Bot {version} first.', { version: dsh.blockedBy })
+  if (dsh.available === false && dsh.blockedBy) return t('Update MMBOT {version} first.', { version: dsh.blockedBy })
   if (shown) return t('DSH {version} is available', { version: dsh.verified })
   return t('Version {version}', { version: dsh.current })
 }
@@ -88,24 +88,24 @@ export function AboutPage({ useUpdate, actions, run, Section, Row, updatesOnly =
     updatesOnly ? null : h('div', { key: 'hero', className: 'bt-about-hero' },
       h('span', { className: 'bt-about-mark' }, h(BotMark, { look: MAIN_LOOK, bot: { id: 'about' }, size: 52, state: markState, live: true, gaze: true, pokeable: true })),
       h('div', { className: 'bt-about-copy' },
-        h('span', { className: 'bt-about-name' }, 'DS Bot'),
+        h('span', { className: 'bt-about-name' }, 'MMBOT'),
         update.current ? h('span', { className: 'bt-about-version' }, t('Version {version}', { version: update.current })) : null),
       repo ? h('a', {
-        className: 'bt-star', href: repo, target: '_blank', rel: 'noopener noreferrer', title: t('Star DS Bot on GitHub'),
-        'aria-label': stars === null ? t('Star DS Bot on GitHub') : `${t('Star DS Bot on GitHub')} · ${t('{count} stars', { count: stars })}`,
+        className: 'bt-star', href: repo, target: '_blank', rel: 'noopener noreferrer', title: t('Star MMBOT on GitHub'),
+        'aria-label': stars === null ? t('Star MMBOT on GitHub') : `${t('Star MMBOT on GitHub')} · ${t('{count} stars', { count: stars })}`,
       },
       h('span', { className: 'bt-star-main' }, h('span', { className: 'bt-star-icon' }, h(StarLineIcon)), 'Star'),
       stars === null ? null : h('span', { className: 'bt-star-count' }, starCount(stars))) : null),
-    repo && !updatesOnly ? h('p', { key: 'ask', className: 'bt-about-ask' }, t('If DS Bot helps you, a star on GitHub helps more people find it.')) : null,
+    repo && !updatesOnly ? h('p', { key: 'ask', className: 'bt-about-ask' }, t('If MMBOT helps you, a star on GitHub helps more people find it.')) : null,
     h(Section, { key: 'updates', title: t('Updates') },
       h('p', { className: 'bt-note' }, t('Updates come from this project’s releases. Your team and conversations are kept.')),
       h(Row, { label: t('Installed version'), hint: `${update.current ?? ''}${update.currentRevision ? ` · r${update.currentRevision}` : ''}` },
         update.phase !== 'installing' && update.phase !== 'installed' ? h('button', { type: 'button', className: 'bt-soft bt-soft-sm', disabled: checking || update.enabled === false, onClick: check }, checking ? t('Checking…') : t('Check for updates')) : null),
-      h(Row, { label: 'DS Bot', hint: botHint(update) }, botControl, update.available && update.notesUrl ? h('a', linkProps(update.notesUrl), t("What's new")) : null),
+      h(Row, { label: 'MMBOT', hint: botHint(update) }, botControl, update.available && update.notesUrl ? h('a', linkProps(update.notesUrl), t("What's new")) : null),
       update.canRepair && !update.available && phase !== 'installed' && phase !== 'installing' ? h(Row, { label: t('Repair installation'), hint: t('Reinstall the latest release without removing your team or conversations.') },
         h('button', { type: 'button', className: 'bt-soft bt-soft-sm', onClick: () => setRepair({ id: update.targetId, label: update.latestRef ?? update.latest }) }, t('Repair installation'))) : null,
       repair ? h('div', { role: 'group', 'aria-label': t('Repair installation') },
-        h('p', { className: 'bt-note' }, t('Reinstall DS Bot {version} from the latest release?', { version: repair.label })),
+        h('p', { className: 'bt-note' }, t('Reinstall MMBOT {version} from the latest release?', { version: repair.label })),
         h('button', { type: 'button', className: 'bt-fb-primary', disabled: phase === 'installing', onClick: () => { const chosen = repair; setRepair(null); void run(actions.installUpdate({ repair: true, targetId: chosen.id })) } }, t('Reinstall release')),
         h('button', { type: 'button', className: 'bt-soft', onClick: () => setRepair(null) }, t('Cancel'))) : null,
       phase === 'installed' && !update.restartRequired ? h('button', { type: 'button', className: 'bt-soft', onClick: () => window.location.reload() }, t('Reload window')) : null,

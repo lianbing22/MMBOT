@@ -26,7 +26,7 @@ Use a native development build: Expo Go does not include this project's local HT
 
 ## Connect to your host
 
-Follow [Getting started](getting-started.md) to install the DSH plugin and configure a model. Use the same reachable network, enable phone connection in the computer's DS Bot **Settings → Mobile devices**, scan the QR with the App and approve the device on the computer. Allow iOS local-network access when prompted.
+Follow [Getting started](getting-started.md) to install the DSH plugin and configure a model. Use the same reachable network, enable phone connection in the computer's MMBOT **Settings → Mobile devices**, scan the QR with the App and approve the device on the computer. Allow iOS local-network access when prompted.
 
 The DSH host runs Bots, tools and tasks through its configured model provider and must remain online.
 

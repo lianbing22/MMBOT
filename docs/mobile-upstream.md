@@ -63,7 +63,7 @@ Synced the upstream [v0.2.1 release](https://github.com/Fei2411/DeepSeek-Bot/rel
 
 The fork keeps its own release path in `docs/releasing.md`; upstream maintainer assets are not adopted: `.agents/skills/` (issue triage and GIF recording) and `.github/workflows/release.yml`.
 
-Release asset names stay on this fork's `DS-Bot-App-<version>-…` scheme for the macOS zip and the Linux deb, updater log lines keep the `DS Bot App` product name, and the Linux binary keeps `executableName: ds-bot-app`.
+Release asset names stay on this fork's `MMBOT-<version>-…` scheme for the macOS zip and the Linux deb, updater log lines keep the `MMBOT` product name, and the Linux binary keeps `executableName: mmbot`.
 
 The mobile bridge and the phone App are untouched by this sync: upstream v0.2.1 changes nothing under `apps/mobile/` or `packages/mobile-sdk/`. `checkShownView` now returns the normalized view beside the title, and the fork's near-limit view fixture follows that contract.
 
