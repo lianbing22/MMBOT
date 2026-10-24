@@ -28,7 +28,7 @@ export function BotCapabilities({ client, bot, team, online, refresh }: {
   if (!team.capabilities) return <Notice text={tr("Update your host plugin to manage capabilities.")} />;
   return <View style={{ gap: 12 }}>
     <Notice error text={error} />
-    {!team.capabilities.length && <Label muted>{tr("No capabilities yet. Add them in DS Bot settings on your computer.")}</Label>}
+    {!team.capabilities.length && <Label muted>{tr("No capabilities yet. Add them in MMBOT settings on your computer.")}</Label>}
     {team.capabilities.map(item => {
       const attached = (bot.capabilities || []).includes(item.name);
       const status = attached ? capabilityStatus(item, team.capabilityStatuses?.[bot.id] || {}) : undefined;

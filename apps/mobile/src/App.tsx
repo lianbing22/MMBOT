@@ -464,7 +464,7 @@ function Shell() {
             />
           ) : (
             <>
-              <PageHeader title={tr("DS Bot")} onOpenNavigation={showNavigation} />
+              <PageHeader title={tr("MMBOT")} onOpenNavigation={showNavigation} />
               <View
                 style={{
                   flex: 1,

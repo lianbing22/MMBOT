@@ -63,7 +63,7 @@ const pages: {
   { id: "usage", title: "Usage", icon: "usage" },
   { id: "secrets", title: "Secrets", icon: "secrets" },
   { id: "feedback", title: "Feedback", icon: "feedback" },
-  { id: "about", title: "About DS Bot", icon: "feedback" },
+  { id: "about", title: "About MMBOT", icon: "feedback" },
   { id: "updates", title: "Plugin updates", icon: "download" },
   { id: "harness", title: "Harness settings", icon: "settings" },
 ];
@@ -178,11 +178,11 @@ export function SettingsScreen({
             <View style={{backgroundColor:t.hover,borderRadius:22,overflow:"hidden"}}>
               <Pressable accessibilityRole="button" accessibilityLabel={tr("Connected host")} onPress={() => setPage("mobile")} style={{flexDirection:"row",alignItems:"center",gap:14,minHeight:80,paddingHorizontal:20,paddingVertical:16}}>
                 <View style={{width:46,height:46,borderRadius:23,backgroundColor:t.line,alignItems:"center",justifyContent:"center"}}><Text style={{fontSize:18,color:t.muted,fontWeight:"600"}}>DS</Text></View>
-                <View style={{flex:1,gap:3}}><Text numberOfLines={1} style={{fontSize:21,color:t.ink}}>{host.name || "DS Bot"}</Text><Text numberOfLines={1} style={{fontSize:16,color:t.muted}}>{new URL(host.url).host}</Text></View><Icon name="chevron" color={t.muted}/>
+                <View style={{flex:1,gap:3}}><Text numberOfLines={1} style={{fontSize:21,color:t.ink}}>{host.name || "MMBOT"}</Text><Text numberOfLines={1} style={{fontSize:16,color:t.muted}}>{new URL(host.url).host}</Text></View><Icon name="chevron" color={t.muted}/>
               </Pressable>
               <SettingRow title={tr("Usage")} compact onPress={() => setPage("usage")} last/>
             </View>
-            <View style={{backgroundColor:t.hover,borderRadius:22,overflow:"hidden"}}><SettingRow title={tr("Tools & skills")} hint={tr("DS Bot tools, skills and plugins")} onPress={() => setPage("tools")} last/></View>
+            <View style={{backgroundColor:t.hover,borderRadius:22,overflow:"hidden"}}><SettingRow title={tr("Tools & skills")} hint={tr("MMBOT tools, skills and plugins")} onPress={() => setPage("tools")} last/></View>
             <Section title={tr("Bot")}>
               <SettingRow title={tr("Bots & groups")} onPress={() => openTeam?.("bots")}/>
               <SettingRow title={tr("Scheduled tasks")} onPress={() => setPage("schedules")}/>
@@ -194,13 +194,13 @@ export function SettingsScreen({
               <SettingRow title={tr("Appearance")} onPress={() => setPage("general")}/>
               <SettingRow title={tr("Language")} onPress={() => setPage("general")}/>
               <SettingRow title={tr("Plugin updates")} onPress={() => setPage("updates")}/>
-              <SettingRow title={tr("About DS Bot")} onPress={() => setPage("about")} last/>
+              <SettingRow title={tr("About MMBOT")} onPress={() => setPage("about")} last/>
             </Section>
             <Section title={tr("Host")}>
               {pages.filter(item => ["connectors","secrets","feedback","harness"].includes(item.id)).map((item,index)=><SettingRow key={item.id} title={tr(item.title)} onPress={() => setPage(item.id as SettingsPage)} last={index===3}/>)}
             </Section>
             <Text style={{ textAlign: "center", fontSize: 12, color: t.faint }}>
-              {tr("DS Bot · Mobile")}</Text>
+              {tr("MMBOT · Mobile")}</Text>
           </>
         )}
         {page === "tools" && <Section title={tr("Tools & skills")}><SettingRow title={tr("Skills")} onPress={() => {setToolsChild(true);setPage("skills");}}/><SettingRow title={tr("Plugins")} onPress={() => {setToolsChild(true);setPage("plugins");}}/><SettingRow title={tr("Connectors")} onPress={() => {setToolsChild(true);setPage("connectors");}}/><SettingRow title={tr("Capabilities")} onPress={() => {setToolsChild(true);setPage("capabilities");}} last/></Section>}

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "DS Bot",
+    "name": "MMBOT",
     "slug": "ds-bot-mobile",
     "version": "0.1.3",
     "orientation": "portrait",
@@ -12,7 +12,7 @@
       "bundleIdentifier": "app.dsbot.mobile",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
-        "NSLocalNetworkUsageDescription": "Connect securely to your paired DS Bot computer on Wi-Fi."
+        "NSLocalNetworkUsageDescription": "Connect securely to your paired MMBOT computer on Wi-Fi."
       }
     },
     "android": {
@@ -27,7 +27,7 @@
     },
     "web": {
       "bundler": "metro",
-      "name": "DS Bot \u00b7 Development preview"
+      "name": "MMBOT \u00b7 Development preview"
     },
     "plugins": [
       [
