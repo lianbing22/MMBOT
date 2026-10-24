@@ -14,11 +14,11 @@
 
 iOS/Android 源码预览连接的是**自己正在运行的 DSH 主机**。React Native App、可复用 SDK 和可选主机 Bridge 分别位于 `apps/mobile/`、`packages/mobile-sdk/`、`ds-bot/src/mobile/`。Bridge 使用协议版本 1，与 Desktop/Web 共用同一个 DSH 进程、团队和数据，不另起 Agent 引擎，也不建立云账号服务。
 
-[原始改造方案](mobile-plan.zh.md)保留完整路线图；[对齐清单](mobile-parity.zh.md)记录原版 DS Bot/Harness 行为与平台边界。本指南说明当前部署方式与限制。下面的命令和验收表是操作说明，不代表某台真机或发行构建已经通过测试。
+[原始改造方案](mobile-plan.zh.md)保留完整路线图；[对齐清单](mobile-parity.zh.md)记录原版 MMBOT/Harness 行为与平台边界。本指南说明当前部署方式与限制。下面的命令和验收表是操作说明，不代表某台真机或发行构建已经通过测试。
 
 ## 准备条件
 
-- DSH `0.2.1-alpha.1`、从当前源码构建的 DS Bot，以及可工作的模型配置。先在主机为 Chief 选择模型。
+- DSH `0.2.1-alpha.1`、从当前源码构建的 MMBOT，以及可工作的模型配置。先在主机为 Chief 选择模型。
 - 构建插件需要 Node.js `22.19` 以上及[仓库开发环境](../CONTRIBUTING.md#setup)。
 - 真机需要能访问的 HTTPS 地址，证书须受手机信任。可以使用带 HTTPS 的私有 VPN；仅连接 VPN 不会把 HTTP 地址变成 HTTPS。
 - 原生开发需要 Android SDK/JDK 和模拟器或设备；本地 iOS 构建需要 macOS/Xcode 及签名配置。也可选择受支持的云构建服务，另行满足其账号和签名要求。
@@ -110,7 +110,7 @@ npm run android
 
 macOS 上可用 `npm run ios` 构建 iOS。两者使用 Expo development build，需要对应原生 SDK；Expo Go 不是验收环境。开发构建安装后，`npm start` 启动 Metro。分发发行版前需配置自己的应用标识与签名，签名材料和凭据不要进入仓库。
 
-1. 在主机 DS Bot 的 **Settings → Mobile devices** 生成配对码。
+1. 在主机 MMBOT 的 **Settings → Mobile devices** 生成配对码。
 2. App 扫描二维码，或粘贴完整配对 JSON；核对主机身份，填写设备名称。
 3. 回主机确认待配对设备。仅知道一次性配对码不会直接获得访问权限。
 4. 打开 Chief 或已有 Bot/群聊。Bot 的长期对话跨内部上下文分段连续展示。
@@ -160,11 +160,11 @@ cd android
 
 ## 团队与主机设置
 
-Bot/群详情、Main Bot 权限、外观、记忆、定时任务和用量使用同一份主机团队状态。在线历史搜索通过主机跨 part 查询，需要保持连接。主机设置提供受支持的 schema 字段及 revision 冲突校验、既有凭据引用、插件包检查/安装/移除与启停、Skills 作用域目录/调用/自有库管理和 DS Bot 主机插件更新。语言可跟随主机或系统，也可在本机选择英文/中文。主要导航与设置已有原生翻译；部分详细状态、错误和插件返回的描述仍保留英文。
+Bot/群详情、Main Bot 权限、外观、记忆、定时任务和用量使用同一份主机团队状态。在线历史搜索通过主机跨 part 查询，需要保持连接。主机设置提供受支持的 schema 字段及 revision 冲突校验、既有凭据引用、插件包检查/安装/移除与启停、Skills 作用域目录/调用/自有库管理和 MMBOT 主机插件更新。语言可跟随主机或系统，也可在本机选择英文/中文。主要导航与设置已有原生翻译；部分详细状态、错误和插件返回的描述仍保留英文。
 
 Connectors 与 Secrets 只显示元信息和授权范围。新值用密码框输入，经 HTTPS 单次提交，在提交或离开前台时清空，不进入草稿、缓存、重放队列或响应。Feedback 先在本机预览诊断；复制、导出日志与打开 issue 都需要用户主动操作，不会自动发送报告。
 
-复杂条件配置表单、集合项增删和任意插件专属 DOM 页面仍需进入主机对应设置页；已存在的集合值可逐项编辑。插件变更会提示需要主机重启或被其他 profile 覆盖。维持连接的 DS Bot 插件必须在主机管理；主机插件更新不会升级手机 App。
+复杂条件配置表单、集合项增删和任意插件专属 DOM 页面仍需进入主机对应设置页；已存在的集合值可逐项编辑。插件变更会提示需要主机重启或被其他 profile 覆盖。维持连接的 MMBOT 插件必须在主机管理；主机插件更新不会升级手机 App。
 
 ## 数据与当前限制
 
@@ -218,7 +218,7 @@ dev/bench.sh mobile-smoke 3098 8798 stop
 MOBILE_PORT=8894 MOBILE_WEB_ORIGIN=http://localhost:8081 dev/bench.sh mobile 3193 8893 start
 ```
 
-另开终端，在 `apps/mobile/` 执行 `npm run web -- --port 8081`，用 `http://localhost:8081` 打开预览；实际 origin 必须与 bench 允许的地址完全一致。通过 bench 已认证的 DS Bot **Mobile devices** 页面配对。完成后在 `ds-bot/` 执行 `dev/bench.sh mobile 3193 8893 stop`，并停止 Metro。`start` 保留已有 bench 数据，需要全新数据时改用另一个 bench 名称。
+另开终端，在 `apps/mobile/` 执行 `npm run web -- --port 8081`，用 `http://localhost:8081` 打开预览；实际 origin 必须与 bench 允许的地址完全一致。通过 bench 已认证的 MMBOT **Mobile devices** 页面配对。完成后在 `ds-bot/` 执行 `dev/bench.sh mobile 3193 8893 stop`，并停止 Metro。`start` 保留已有 bench 数据，需要全新数据时改用另一个 bench 名称。
 
 仅浏览器/模拟器开发时，可在 loopback HTTP Bridge 上显式设置 `devAllowInsecure: true`，并打开 App 仅在开发构建出现的 HTTP 选项。不得绑定明文 LAN 地址。真机的 `localhost` 指手机自己，连接电脑须使用 HTTPS。浏览器预览凭据仅保存在当前页面内存，刷新后失效。
 

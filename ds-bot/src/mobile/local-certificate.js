@@ -13,7 +13,7 @@ const der = (tag, bytes) => {
 const seq = (...values) => der(0x30, Buffer.concat(values))
 const hex = value => Buffer.from(value, 'hex')
 const algorithm = seq(hex('06082a8648ce3d040302'))
-const name = seq(der(0x31, seq(hex('0603550403'), der(0x0c, Buffer.from('DS Bot local computer')))))
+const name = seq(der(0x31, seq(hex('0603550403'), der(0x0c, Buffer.from('MMBOT local computer')))))
 const extension = (oid, value, critical = false) => seq(hex(oid), ...(critical ? [hex('0101ff')] : []), der(4, value))
 const time = value => {
   const digits = value.toISOString().replace(/[-:T]/g, '').slice(0, 14)

@@ -20,7 +20,7 @@ export const BTW_TOKEN = '/btw '
 const GROUP_REFUSAL = "btw is only available in a Bot's private chat."
 const ATTACHMENT_REFUSAL = '/btw does not take attachments.'
 const EMPTY_REFUSAL = 'Write a question after /btw.'
-const LOADING_REFUSAL = 'DS Bot is still loading this chat.'
+const LOADING_REFUSAL = 'MMBOT is still loading this chat.'
 
 export function btwSurface(roster, sessionId) {
   if (!roster?.ready) return 'unknown'

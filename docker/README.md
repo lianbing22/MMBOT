@@ -1,9 +1,9 @@
-# DS Bot in Docker
+# MMBOT in Docker
 
-This directory deploys DS Bot as a Docker image: a `dsh web` server (DeepSeek
+This directory deploys MMBOT as a Docker image: a `dsh web` server (DeepSeek
 Harness) with the `ds-bot` plugin installed, ready for a NAS or any always-on
 box. The container is the sandbox boundary — see [Permissions](#permissions).
-The image source is this fork, [QingJ01/DS-Bot-App](https://github.com/QingJ01/DS-Bot-App).
+The image source is this fork, [lianbing22/MMBOT](https://github.com/lianbing22/MMBOT).
 Phone pairing and the mobile bridge inside Docker are not published or validated
 by this image.
 
@@ -28,7 +28,7 @@ docker compose up -d --build
 docker compose logs ds-bot
 ```
 
-This builds the local image without pulling a published DS Bot image. The root
+This builds the local image without pulling a published MMBOT image. The root
 Compose file publishes host port **13080**, and stores data and workspace files
 in `docker/data` and `docker/workspace`.
 
@@ -38,7 +38,7 @@ http://172.x.x.x:3080/?token=…)`. Take the token from it and open
 cookie (valid 30 days, bound to that authority), after which
 `http://<NAS IP>:13080/` opens the UI directly. The printed port is the container's;
 use the host port from `ports:` when opening it. The first time the team opens,
-DS Bot creates a Main Bot called Chief.
+MMBOT creates a Main Bot called Chief.
 
 An alternative for users who prefer `.env` is still available in `docker/`:
 
@@ -175,7 +175,7 @@ retry on the next start. Reinstallations are bounded and transactional: a failed
 install restores the previous plugin profile and leaves its archive stamp
 unchanged. To force a fresh profile, stop the container and delete
 `DATA_DIR/profiles/web` (not the whole data dir). The image is built and tested
-with dsh `0.2.0-rc.2`, the version DS Bot is verified with; a `DSH_VERSION`
+with dsh `0.2.0-rc.2`, the version MMBOT is verified with; a `DSH_VERSION`
 build arg exists, but other releases are untested and newer ones change how
 the server binds.
 

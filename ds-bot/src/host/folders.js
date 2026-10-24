@@ -44,7 +44,7 @@ export function install(rt) {
   // Where `input` leads from `base`, as a real path, the way DSH's working_directory resolves
   // a change; undefined when nothing is there.
   const folderAt = (base, input) => realpath(resolve(base, input)).catch(() => undefined)
-  // Where a Session works: the folder DSH has for it, else the one DS Bot made it for.
+  // Where a Session works: the folder DSH has for it, else the one MMBOT made it for.
   const sessionFolder = (session) => {
     const reported = session?.header === undefined ? undefined : ctx.get?.('workingDirectory')?.get?.(session) ?? session.header.cwd
     if (reported !== undefined) return reported
@@ -123,7 +123,7 @@ export function install(rt) {
     if (!(await isFolder(path))) throw new Error(`${text} is a file, not a folder`)
     if (await holdsData(path)) throw new Error(`${text} holds DeepSeek Harness data, so it cannot be the team workspace`)
     if (path === await realTeam()) return path
-    const workspace = await ctx.workspaceRegistry.resolveByPath(path) ?? await ctx.workspaceRegistry.create(path, 'DS Bot')
+    const workspace = await ctx.workspaceRegistry.resolveByPath(path) ?? await ctx.workspaceRegistry.create(path, 'MMBOT')
     state.workspaceId = workspace.id
     await rt.save()
     return path

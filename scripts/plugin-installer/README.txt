@@ -1,4 +1,4 @@
-DS Bot 0.1.3 - 本地安装助手 / Local installation helper
+MMBOT 0.1.3 - 本地安装助手 / Local installation helper
 
 Windows：
 1. 解压整个 ZIP，双击 prepare-plugin.cmd。
@@ -28,7 +28,7 @@ It never edits DSH files, deletes chats, or disables integrity verification.
 
 macOS / Linux:
 Download ds-bot-0.1.3.tgz from
-https://github.com/QingJ01/DS-Bot-App/releases/download/v0.1.3/ds-bot-0.1.3.tgz
+https://github.com/lianbing22/MMBOT/releases/download/v0.1.3/ds-bot-0.1.3.tgz
 and save it in a permanent folder. Check its SHA-256 against the release's
 SHA256SUMS (or SHA256SUMS.txt included in this helper ZIP).
 In DSH > Plugins > Add plugin, enter ds-bot@file: followed by its absolute path,
@@ -44,4 +44,4 @@ with DSH's hoisted linker. Local tarballs retain the correct SHA-512 value.
 The included plugin is the published v0.1.3 release archive. Older v0.1.2
 and v0.1.2-r1 downloads remain published unchanged for existing lockfiles;
 use v0.1.3 for new installations.
-https://github.com/QingJ01/DS-Bot-App/blob/main/docs/plugin-install-recovery.md
+https://github.com/lianbing22/MMBOT/blob/main/docs/plugin-install-recovery.md

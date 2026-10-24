@@ -2,7 +2,7 @@
   "name": "deepseek-bot-engine",
   "version": "0.1.3",
   "private": true,
-  "description": "The engine layer of the DS Bot App profile: transport, host services and the Bot agent preset over dsh-base, without the DSH Web front end.",
+  "description": "The engine layer of the MMBOT profile: transport, host services and the Bot agent preset over dsh-base, without the DSH Web front end.",
   "license": "Apache-2.0",
   "type": "module",
   "main": "index.js",

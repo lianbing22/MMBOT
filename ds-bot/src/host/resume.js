@@ -1,7 +1,7 @@
 // Resume: Bot work that DeepSeek Harness dropped when it closed or restarted. DSH closes
 // a turn it never finished as interrupted when the Session next opens, and a clean
 // shutdown also cancels the messages still waiting in a Session's inbox; nothing would
-// ever run either again, and whoever waited for them was not told. DS Bot notes each
+// ever run either again, and whoever waited for them was not told. MMBOT notes each
 // running Bot turn and each message it delivers until a turn takes it up, in
 // inflight.json; what is still noted at the next start is picked up once.
 import { randomUUID } from 'node:crypto'
@@ -117,7 +117,7 @@ export function install(rt) {
   rt.forgetDelivery = forgetQueued
 
   // A message is done with once a turn takes it up, or once it leaves the inbox untaken
-  // while DS Bot runs: the user stopped the Bot, or DS Bot moved or withdrew it.
+  // while MMBOT runs: the user stopped the Bot, or MMBOT moved or withdrew it.
   ctx.on('agent/inbox/discarded', ({ message } = {}) => {
     if (message?.source?.kind === SOURCE_KIND && message.source.exchangeId) forgetQueued(message.source.exchangeId)
   })
@@ -126,7 +126,7 @@ export function install(rt) {
   let taken = Object.keys(interrupted.queued).length > 0 ? new Set() : undefined
   // The first turn event of each Session since this start, until the noted turns are
   // picked up. A turn that ends, or still runs, before one starts here outlived the
-  // last run: only DS Bot restarted (the plugin reloaded) and DSH went on.
+  // last run: only MMBOT restarted (the plugin reloaded) and DSH went on.
   let firstTurn = Object.keys(interrupted.turns).length > 0 ? new Map() : undefined
   ctx.on('session/event', (session, event) => {
     const id = session?.id

@@ -14,23 +14,23 @@
 | `@Anvil你看下`（名字后面没空格） | 文件「Anvil你看下」 |
 | `@Anvil，帮我查`（名字后面直接跟标点） | 文件「Anvil，帮我查」 |
 
-**不受影响的：** 谁来回答。DS Bot 用自己的规则读「@名字」，被点名的 Bot 照样会被叫到。消息发出以后，会正常显示 Bot 的头像和名字。
+**不受影响的：** 谁来回答。MMBOT 用自己的规则读「@名字」，被点名的 Bot 照样会被叫到。消息发出以后，会正常显示 Bot 的头像和名字。
 
 **小技巧：** 名字后面加一个空格（`@Anvil 你看下`）。这样只要名字里没有空格，等待时也会显示成 Bot。
 
 **原因：** 这些等待中的行由 DeepSeek Harness 自己画，它读「@」时一直读到下一个空格。插件目前改不了它们的显示。
 
-## DS Bot 没有加载：「disabling profile plugin row "bot"」
+## MMBOT 没有加载：「disabling profile plugin row "bot"」
 
-**在哪里：** DSH Web（或 Desktop）能启动，但没有 DS Bot。日志里有这一行：
+**在哪里：** DSH Web（或 Desktop）能启动，但没有 MMBOT。日志里有这一行：
 
 ```text
 dsh: disabling profile plugin row "bot": its declared peer dependencies cannot be validated: Cannot read properties of undefined (reading 'startsWith')
 ```
 
-换装别的 DS Bot 版本也没用。
+换装别的 MMBOT 版本也没用。
 
-**原因：** DeepSeek Harness 加载插件前，会检查 profile 里的每一行插件配置。这条信息表示有一行的 id 是 `bot`，却没有包名。DS Bot 自己加的那一行带有包名 `ds-bot`，所以没有包名的那一行多半来自 profile 文件夹里的文件，比如 `cordis.patch.yml` 里一条已经对不上 DS Bot 那一行的 `- id: bot` 覆盖配置。我们没能复现这个问题，所以还不知道这样的一行是怎么留下来的。
+**原因：** DeepSeek Harness 加载插件前，会检查 profile 里的每一行插件配置。这条信息表示有一行的 id 是 `bot`，却没有包名。MMBOT 自己加的那一行带有包名 `ds-bot`，所以没有包名的那一行多半来自 profile 文件夹里的文件，比如 `cordis.patch.yml` 里一条已经对不上 MMBOT 那一行的 `- id: bot` 覆盖配置。我们没能复现这个问题，所以还不知道这样的一行是怎么留下来的。
 
 **怎么处理：** profile 文件夹是 `~/.dsh/profiles/web/`（Windows：`C:\Users\<用户名>\.dsh\profiles\web\`）；设置了 `DSH_HOME` 时，是其中的 `profiles/web/`。Desktop 用 `profiles/desktop/`。
 
@@ -53,7 +53,7 @@ Error: configured web provider "auto" is not registered
 
 错误码是 `WEB_PROVIDER_CONFIGURED_MISSING`。
 
-**原因：** 不管 `web-search-auto` 这一行开没开，DS Bot 的 `cordis.patch.yml` 都会把 `web` 行的 `searchProvider` 设成 `auto`；而它指定的 provider 不存在时，DeepSeek Harness 不会换用别的 provider。
+**原因：** 不管 `web-search-auto` 这一行开没开，MMBOT 的 `cordis.patch.yml` 都会把 `web` 行的 `searchProvider` 设成 `auto`；而它指定的 provider 不存在时，DeepSeek Harness 不会换用别的 provider。
 
 **怎么处理：** profile 文件夹和上一条里的一样。
 

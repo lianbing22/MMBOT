@@ -102,12 +102,12 @@ jobs:
           $ErrorActionPreference = 'Stop'
           function Find-Entry($root) {
             Get-ChildItem "$root\Software\Microsoft\Windows\CurrentVersion\Uninstall" |
-              Where-Object { (Get-ItemProperty $_.PSPath).DisplayName -like 'DS Bot App*' }
+              Where-Object { (Get-ItemProperty $_.PSPath).DisplayName -like 'MMBOT*' }
           }
-          $installer = Get-Item dist-pack/DS-Bot-App-*-win-x64.exe
+          $installer = Get-Item dist-pack/MMBOT-*-win-x64.exe
           Start-Process -FilePath $installer.FullName -ArgumentList '/S' -Wait
-          $dir = Join-Path $env:LOCALAPPDATA 'Programs\DS Bot App'
-          $exe = Join-Path $dir 'DS Bot App.exe'
+          $dir = Join-Path $env:LOCALAPPDATA 'Programs\MMBOT'
+          $exe = Join-Path $dir 'MMBOT.exe'
           if (-not (Test-Path $exe)) { throw "The installer did not put the app in $dir" }
           $entry = Find-Entry 'HKCU:'
           if (-not $entry) { throw 'No uninstall entry for the current user' }
@@ -135,14 +135,14 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-          $exe = Join-Path $env:LOCALAPPDATA 'Programs\DS Bot App\DS Bot App.exe'
+          $exe = Join-Path $env:LOCALAPPDATA 'Programs\MMBOT\MMBOT.exe'
           node scripts/check-update.mjs $exe dist-next
           if ($LASTEXITCODE -ne 0) { throw 'The installed app did not take the update' }
           # The installer goes on after the app has quit.
           function Installed-Version {
             Get-ChildItem 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall' |
               ForEach-Object { Get-ItemProperty $_.PSPath } |
-              Where-Object { $_.DisplayName -like 'DS Bot App*' } |
+              Where-Object { $_.DisplayName -like 'MMBOT*' } |
               Select-Object -ExpandProperty DisplayVersion
           }
           $deadline = (Get-Date).AddSeconds(240)
@@ -158,18 +158,18 @@ jobs:
           $ErrorActionPreference = 'Stop'
           function Find-Entry($root) {
             Get-ChildItem "$root\Software\Microsoft\Windows\CurrentVersion\Uninstall" |
-              Where-Object { (Get-ItemProperty $_.PSPath).DisplayName -like 'DS Bot App*' }
+              Where-Object { (Get-ItemProperty $_.PSPath).DisplayName -like 'MMBOT*' }
           }
-          $dir = Join-Path $env:LOCALAPPDATA 'Programs\DS Bot App'
-          $exe = Join-Path $dir 'DS Bot App.exe'
+          $dir = Join-Path $env:LOCALAPPDATA 'Programs\MMBOT'
+          $exe = Join-Path $dir 'MMBOT.exe'
           # The uninstaller removes the program only: the data location and the app's own data stay.
-          $kept = foreach ($folder in (Join-Path $HOME '.ds-bot-app'), (Join-Path $env:APPDATA 'DS Bot App')) {
+          $kept = foreach ($folder in (Join-Path $HOME '.ds-bot-app'), (Join-Path $env:APPDATA 'MMBOT')) {
             New-Item -ItemType Directory -Force $folder | Out-Null
             $file = Join-Path $folder 'kept.txt'
             Set-Content $file 'kept'
             $file
           }
-          $uninstaller = Join-Path $dir 'Uninstall DS Bot App.exe'
+          $uninstaller = Join-Path $dir 'Uninstall MMBOT.exe'
           Start-Process -FilePath $uninstaller -ArgumentList '/currentuser', '/S' -Wait
           # The uninstaller goes on from a copy in the temp folder, so wait for its result.
           $deadline = (Get-Date).AddSeconds(120)
@@ -206,16 +206,16 @@ jobs:
           CSC_FOR_PULL_REQUEST: 'true'
       - name: Check the zip
         run: |
-          zip="dist-pack/DS-Bot-App-$(node -p "require('./package.json').version")-mac-${{ matrix.arch }}.zip"
+          zip="dist-pack/MMBOT-$(node -p "require('./package.json').version")-mac-${{ matrix.arch }}.zip"
           test -f "$zip"
       - name: Check the packaged app
         run: node scripts/check-packed.mjs
       - name: Install from the zip and check
         run: |
-          zip="dist-pack/DS-Bot-App-$(node -p "require('./package.json').version")-mac-${{ matrix.arch }}.zip"
+          zip="dist-pack/MMBOT-$(node -p "require('./package.json').version")-mac-${{ matrix.arch }}.zip"
           ditto -x -k "$zip" /Applications
-          app="/Applications/DS Bot App.app"
-          exe="$app/Contents/MacOS/DS Bot App"
+          app="/Applications/MMBOT.app"
+          exe="$app/Contents/MacOS/MMBOT"
           codesign --verify --deep --strict "$app"
           file "$exe"
           expected="${{ matrix.arch }}"
@@ -244,8 +244,8 @@ jobs:
       - name: Check the packages
         run: |
           version="$(node -p "require('./package.json').version")"
-          test -f "dist-pack/DS-Bot-App-$version-linux-x86_64.AppImage"
-          test -f "dist-pack/DS-Bot-App-$version-linux-amd64.deb"
+          test -f "dist-pack/MMBOT-$version-linux-x86_64.AppImage"
+          test -f "dist-pack/MMBOT-$version-linux-amd64.deb"
           test -f dist-pack/latest-linux.yml
       # An AppImage mounts through FUSE 2, and Ubuntu 24.04's AppArmor blocks the unprivileged
       # user namespaces that Chromium's sandbox needs; a throwaway runner may lift that.
@@ -260,12 +260,12 @@ jobs:
       - name: Install the deb and check
         run: |
           version="$(node -p "require('./package.json').version")"
-          sudo apt-get install -y "./dist-pack/DS-Bot-App-$version-linux-amd64.deb"
-          test -f /usr/share/applications/ds-bot-app.desktop
-          xvfb-run -a node scripts/check-packed.mjs "/opt/DS Bot App/ds-bot-app"
+          sudo apt-get install -y "./dist-pack/MMBOT-$version-linux-amd64.deb"
+          test -f /usr/share/applications/mmbot.desktop
+          xvfb-run -a node scripts/check-packed.mjs "/opt/MMBOT/mmbot"
       # A deb cannot update itself: it points at the release page, as on macOS.
       - name: The deb's app hears of a new version
-        run: xvfb-run -a node scripts/check-update.mjs "/opt/DS Bot App/ds-bot-app" 99.0.0
+        run: xvfb-run -a node scripts/check-update.mjs "/opt/MMBOT/mmbot" 99.0.0
       # The update builds the app a second time, so it runs only for changes to the app or the
       # workflows. The AppImage downloads the new one and replaces itself as it quits.
       - name: Does the change touch the app?
@@ -283,16 +283,16 @@ jobs:
         if: steps.scope.outputs.update == 'true'
         run: |
           tmp="$(mktemp -d)"
-          cp dist-pack/DS-Bot-App-*-linux-x86_64.AppImage "$tmp/ds-bot-app.AppImage"
-          chmod +x "$tmp/ds-bot-app.AppImage"
-          xvfb-run -a node scripts/check-update.mjs "$tmp/ds-bot-app.AppImage" dist-next
+          cp dist-pack/MMBOT-*-linux-x86_64.AppImage "$tmp/mmbot.AppImage"
+          chmod +x "$tmp/mmbot.AppImage"
+          xvfb-run -a node scripts/check-update.mjs "$tmp/mmbot.AppImage" dist-next
           pkill -f "$tmp/ds-bot-app" || true
-          next="$(ls dist-next/DS-Bot-App-*-linux-x86_64.AppImage)"
-          test "$(sha512sum "$tmp/ds-bot-app.AppImage" | cut -d' ' -f1)" = "$(sha512sum "$next" | cut -d' ' -f1)"
+          next="$(ls dist-next/MMBOT-*-linux-x86_64.AppImage)"
+          test "$(sha512sum "$tmp/mmbot.AppImage" | cut -d' ' -f1)" = "$(sha512sum "$next" | cut -d' ' -f1)"
       - name: Uninstall
         run: |
           sudo apt-get remove -y ds-bot-app-desktop
-          test ! -e "/opt/DS Bot App/ds-bot-app"
+          test ! -e "/opt/MMBOT/mmbot"
 
   docker:
     name: Docker startup and data migration

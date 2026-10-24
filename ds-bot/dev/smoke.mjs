@@ -321,7 +321,7 @@ await step('the big view survives the switch to an earlier part', async () => {
 }, found => expect(found?.view?.children?.length === 4 && found.view.children.every(node => node.type === 'text' && node.text === 'x'.repeat(1900)), 'the earlier part lost the view blueprint'))
 
 // Work still under way (the mock steward reads 阶段未完 in the latest user message): the
-// part is condensed in place with DS Bot's checkpoint, not switched, and the condensed
+// part is condensed in place with MMBOT's checkpoint, not switched, and the condensed
 // messages stay searchable. Then work that reaches a stopping point switches again.
 const writerParts = () => (botNamed('Writer').segments ?? []).length
 const partsBeforeWork = writerParts()
@@ -369,7 +369,7 @@ await step('update Writer', () => api('update-bot', { id: botNamed('Writer').id,
 
 // dsh keeps each Session under a folder named after its cwd. A change of working folder
 // moves the Bot's own chat on to a fresh part made there; the fresh part then stays put.
-// The native realpath is the one DS Bot saves; on Windows the JS one keeps 8.3 short names.
+// The native realpath is the one MMBOT saves; on Windows the JS one keeps 8.3 short names.
 const project = realpathSync.native(mkdtempSync(join(tmpdir(), 'ds-bot-smoke-folder-')))
 const folderOf = sessionId => readdirSync(join(HOME, 'sessions')).find(dir => existsSync(join(HOME, 'sessions', dir, sessionId)))
 const coderParts = () => (botNamed('Coder').segments ?? []).length

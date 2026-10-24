@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to DS Bot are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the versions follow [Semantic Versioning](https://semver.org/). Before 1.0, a minor version can contain breaking changes.
+All notable changes to MMBOT are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the versions follow [Semantic Versioning](https://semver.org/). Before 1.0, a minor version can contain breaking changes.
 
 ## Installation integrity repair — 2026-10-14
 
@@ -14,12 +14,20 @@ All notable changes to DS Bot are listed here. The format follows [Keep a Change
 
 ## Unreleased
 
+### Branding: MMBOT
+
+- The plugin and the desktop app now ship as **MMBOT**: window titles, installers, release assets (`MMBOT-<version>-…`), the Linux binary (`mmbot`), the app id (`com.mmbot.app`) and the repository and installation addresses (`lianbing22/MMBOT`) use the new name.
+- The DSH plugin package stays `ds-bot`, the data folder stays `~/.ds-bot-app`, and the phone app keeps its DS Bot name, package id and APK names until its next release.
+- Installs made from this fork's earlier repository or from the upstream projects are still recognised by the updater and migrate to this repository's pinned source.
+- Attribution for DS Bot App, DeepSeek-Bot and DeepSeek Harness stays in `NOTICE` and in the README Credits. Historical notes under `docs/releases/` keep their content and use the new name.
+- The `v0.1.3` release in this repository carries the plugin archive, `SHA256SUMS`, the Android signing certificate and both phone APKs unchanged from the previous name, so the documented installation and phone downloads keep working; the desktop installers stay on the earlier repository until the next release.
+
 ### Upstream synchronization (unreleased)
 
-- Port the approved upstream desktop, runtime, session-navigation, thinking, views, avatar, and message-display changes while retaining DS Bot App version `0.1.3`, fork release metadata, and mobile authorization/TLS isolation.
+- Port the approved upstream desktop, runtime, session-navigation, thinking, views, avatar, and message-display changes while retaining MMBOT version `0.1.3`, fork release metadata, and mobile authorization/TLS isolation.
 - Sync upstream `1bebe826f74e9a72cabafd3b80602b05af867b38` (upstream `v0.2.1`, diff base `02cbb63a29f3591839d2b37ffa91d202a12ede6c` = upstream `v0.2.0`): a Bot's own chat takes `/btw` side questions without stopping its work; the desktop app gets the Bot browser, cookie import from a file or an installed browser profile, and a save prompt for downloads; message layout and the views a Bot shows in its replies are adjustable; Linux builds as an AppImage that updates itself and a deb (built and checked by CI; this fork's release flow does not attach them yet); groups no longer drop @ calls, a Bot's thinking starts hidden, and a phone-width window keeps the details panel, menus and controls usable. Unreleased here: the fork keeps version `0.1.3`, its release metadata and mobile authorization/TLS isolation.
 
-## DS Bot App [v0.1.3] - 2026-10-20
+## MMBOT [v0.1.3] - 2026-10-20
 
 ### Security
 
@@ -47,12 +55,12 @@ All notable changes to DS Bot are listed here. The format follows [Keep a Change
 - Reject duplicate capability names from Add while preserving Edit and Bot-tool upsert behavior.
 - Include upstream fixes for group attachments and hand-off completion, concurrent Bot/group changes and deletion, work-folder recovery, relative file links, reactions and unread marks across tabs, search routes, sidebar controls, feedback links, theme contrast and diagnostics shutdown.
 
-## DS Bot App [v0.1.2-r1] - 2026-10-15
+## MMBOT [v0.1.2-r1] - 2026-10-15
 
-- Restore the DS Bot settings dialog by supplying the Plugin updates navigation icon; cover the complete navigation with real React rendering tests.
+- Restore the MMBOT settings dialog by supplying the Plugin updates navigation icon; cover the complete navigation with real React rendering tests.
 - Withdraw the original v0.1.2 package from recommended use; publish immutable revision assets instead of replacing existing downloads.
 
-## DS Bot App [v0.1.2] - 2026-10-15
+## MMBOT [v0.1.2] - 2026-10-15
 
 - Save a group permission override only after every member Session accepts it; report failures and allow retrying a partially applied change.
 - Match live and durable mobile group replies by stable identity, avoiding duplicate replies when JSON formatting differs.
@@ -70,7 +78,7 @@ All notable changes to DS Bot are listed here. The format follows [Keep a Change
 - Validate coordinated plugin, App, Expo and lockfile versions on PRs and main builds, before tagging. Revising an older release no longer forces it to become GitHub's latest release.
 - Show a dedicated IPv6 switch and network-address selector in plugin mobile settings, including while connected or when no IPv6 address is available. Keep IPv4 as the default when available and send the explicitly selected address on enable.
 
-## DS Bot App [v0.1.1] - 2026-10-14
+## MMBOT [v0.1.1] - 2026-10-14
 
 ### Revision 2
 
@@ -95,7 +103,7 @@ All notable changes to DS Bot are listed here. The format follows [Keep a Change
 - Keep IPv4 as the default while excluding IPv6 link-local, multicast and unspecified addresses from automatic setup. Bind IPv6 HTTPS to the selected address and retain host public-key identity when renewing certificates.
 - Normalize IPv6 brackets for iOS certificate hostname checks and allow IPv6 loopback HTTP only in explicit SDK development mode.
 
-## DS Bot App [v0.1.0] - 2026-10-13 (republished)
+## MMBOT [v0.1.0] - 2026-10-13 (republished)
 
 Sync upstream [v0.1.4](https://github.com/Fei2411/DeepSeek-Bot/releases/tag/v0.1.4), commit `5c2726279d3bcabaad6aea403c46c88fcf9ba8d8`, while keeping this fork’s coordinated version and mobile implementation. The withdrawn source is archived under `archive/withdrawn-v0.1.0`.
 
@@ -112,7 +120,7 @@ Sync upstream [v0.1.4](https://github.com/Fei2411/DeepSeek-Bot/releases/tag/v0.1
 - Keep Chief in the home conversation list and use a settings icon for the settings entry.
 - Align the thinner 48 dp empty composer with the attachment circle, remove control shadows, and keep whale/phone shortcuts at the left of the desktop footer. Float settings subpage controls above scrolling content. Add shared press, page and sheet transitions that respect reduced-motion preferences.
 
-## Archived initial DS Bot App v0.1.0 - 2026-10-13 (withdrawn)
+## Archived initial MMBOT v0.1.0 - 2026-10-13 (withdrawn)
 
 First coordinated release of this fork: both the host plugin and mobile App use version `0.1.0`. This version series is independent of the upstream plugin tags. [中文 / English release notes](docs/releases/v0.1.0.md).
 
@@ -138,7 +146,7 @@ First coordinated release of this fork: both the host plugin and mobile App use 
 
 ### Fixed
 
-- When DS Bot cannot save the Bot team, the change now fails with an error instead of being lost silently.
+- When MMBOT cannot save the Bot team, the change now fails with an error instead of being lost silently.
 - A Bot team file that cannot be read is no longer replaced by an empty team; a damaged file is kept as a backup.
 - Warnings in the host log hide keys and tokens.
 - Bots receive the current time on their first model step and refresh it after ten minutes, even when their DSH preset does not supply a clock.
@@ -161,11 +169,11 @@ The entries below describe upstream releases before this fork.
 
 ### Added
 
-- Settings → About DS Bot: the DS Bot and DSH versions, **Check for updates** and the update buttons, and links to the source code, the release notes and the feedback page. A **Star** button opens the GitHub repository and shows its star count.
+- Settings → About MMBOT: the MMBOT and DSH versions, **Check for updates** and the update buttons, and links to the source code, the release notes and the feedback page. A **Star** button opens the GitHub repository and shows its star count.
 
 ### Fixed
 
-- The update card offers a DSH update only when a DS Bot release names a verified DSH version. DS Bot 0.1.1 offered DSH `0.2.1-alpha.1`, which was not verified. In DSH Desktop the card shows a DSH update only when the update the app offers is the verified version.
+- The update card offers a DSH update only when a MMBOT release names a verified DSH version. MMBOT 0.1.1 offered DSH `0.2.1-alpha.1`, which was not verified. In DSH Desktop the card shows a DSH update only when the update the app offers is the verified version.
 
 ## [0.1.1] - 2026-10-11
 
@@ -174,7 +182,7 @@ Tested with DeepSeek Harness `0.2.1-alpha.1` (DSH Desktop and DSH Web).
 ### Added
 
 - Voice chat uses the local speech recognition of the official DSH Voice Input plugin (SenseVoice) when the plugin is on, and the browser's speech recognition otherwise. When the plugin has no speech model yet, the voice panel opens its settings.
-- The update card also offers DSH updates, but only the DSH version that the newest DS Bot release was verified with (`dsBot.verifiedDsh`). A DSH installed with npm updates in one click; DSH Desktop opens its own update panel.
+- The update card also offers DSH updates, but only the DSH version that the newest MMBOT release was verified with (`dsBot.verifiedDsh`). A DSH installed with npm updates in one click; DSH Desktop opens its own update panel.
 - Each Bot can pick a thinking level with its model, in the model menu or when the Bot is created. **Default** uses the model's own level.
 - A permission setting in each Bot's details panel: **Read only**, **Workspace** or **Full access**, from the presets DSH offers. The Bot keeps it in its own chat, its group chats and its new conversation parts.
 
@@ -210,12 +218,12 @@ The first public preview. Tested with DeepSeek Harness `0.2.1-alpha.1` (DSH Desk
 - Avatar animation in three levels (Settings → Bots → Animation): **Quiet**, **Normal** (the default) and **Lively**. Panels, menus and controls move on springs.
 - Settings with pages for General, Bots, Group chats, Connectors, Scheduled tasks, Usage, Secrets and Feedback.
 - The interface follows the DSH language (English or Chinese).
-- **Classic Agent mode** (Settings → General) gives the window back to the native DSH interface; the **DS Bot** button at the bottom of the sidebar brings the team view back.
-- Settings → Feedback: the DS Bot and DSH versions, the system and the recent errors, with **Report on GitHub**, **Copy**, **Download** and **Clear**. Keys, tokens, saved secrets and the home folder are removed from the text. Errors are also written to `<home>/logs/diagnostics.jsonl` (`diagnosticsFile: false` keeps them in memory only), and a failed request shows a short notice with a **Details** link.
-- Update checks: DS Bot looks for a newer release where it was installed from (the npm registry, or GitHub for a versioned git install) and shows a cloud button at the sidebar's top right when one exists. One click installs it; the new version runs from the next DSH start. `updateCheck: false` turns the checks off.
+- **Classic Agent mode** (Settings → General) gives the window back to the native DSH interface; the **MMBOT** button at the bottom of the sidebar brings the team view back.
+- Settings → Feedback: the MMBOT and DSH versions, the system and the recent errors, with **Report on GitHub**, **Copy**, **Download** and **Clear**. Keys, tokens, saved secrets and the home folder are removed from the text. Errors are also written to `<home>/logs/diagnostics.jsonl` (`diagnosticsFile: false` keeps them in memory only), and a failed request shows a short notice with a **Details** link.
+- Update checks: MMBOT looks for a newer release where it was installed from (the npm registry, or GitHub for a versioned git install) and shows a cloud button at the sidebar's top right when one exists. One click installs it; the new version runs from the next DSH start. `updateCheck: false` turns the checks off.
 - One writer per team: when DSH Web and DSH Desktop share a DSH home, the second one opens the team read-only, says why, and takes over when the first one quits.
 
-If you used the legacy `dsh-bot` package, remove it before you install `ds-bot`. The team data stays in `<DSH_HOME>/bot`, and the theme, Bot colors and browser settings move over the first time DS Bot opens.
+If you used the legacy `dsh-bot` package, remove it before you install `ds-bot`. The team data stays in `<DSH_HOME>/bot`, and the theme, Bot colors and browser settings move over the first time MMBOT opens.
 
 ### Known limitations
 
@@ -225,7 +233,7 @@ If you used the legacy `dsh-bot` package, remove it before you install `ds-bot`.
 - Only one DSH can change a team at a time; a second DSH on the same DSH home opens it read-only ([Data and backups](ds-bot/README.md#data-and-backups)).
 - Group chats use many tokens: each member reads the group and answers in turn.
 
-[v0.1.0]: https://github.com/QingJ01/DS-Bot-App/releases/tag/v0.1.0
+[v0.1.0]: https://github.com/lianbing22/MMBOT/releases/tag/v0.1.0
 [0.1.2]: https://github.com/Fei2411/DeepSeek-Bot/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/Fei2411/DeepSeek-Bot/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/Fei2411/DeepSeek-Bot/releases/tag/v0.1.0

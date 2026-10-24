@@ -91,7 +91,7 @@ fixture严格限定`.dsh-test-<name>`，不包含在发布插件中；正常部�
 
 新增 10 项插件测试，覆盖技能并发保存/持久化/只读与取消、包固定版本与设备任务隔离、重复浏览器动作去重与取消、快照失效、敏感输入排除，以及通知持久化、已读设备隔离、撤销和类别筛选。App 新增 2 项工具结果类型测试；总计插件 373、SDK 23、App 32 项通过，类型检查与生成物检查通过。
 
-`dev/mobile-features-smoke.mjs` 完成 13 项真实主机及手机界面联调：Skills 目录与正文、真实 `/技能名` 指令注入、浏览器读取/输入/点击/去重、手机确认操作、撤销控制、通知与已读、受保护插件清单。浏览器窗口是独立 Chromium 受控页，经 DS Bot 公开窗口通道应答；没有以此宣称已验证原生 Electron WebView。包安装及取消由公开接口契约测试覆盖，未实际安装第三方包。后台推送测试使用合成路由和隔离 sender，不证明 APNs/FCM 投递。
+`dev/mobile-features-smoke.mjs` 完成 13 项真实主机及手机界面联调：Skills 目录与正文、真实 `/技能名` 指令注入、浏览器读取/输入/点击/去重、手机确认操作、撤销控制、通知与已读、受保护插件清单。浏览器窗口是独立 Chromium 受控页，经 MMBOT 公开窗口通道应答；没有以此宣称已验证原生 Electron WebView。包安装及取消由公开接口契约测试覆盖，未实际安装第三方包。后台推送测试使用合成路由和隔离 sender，不证明 APNs/FCM 投递。
 
 Android 已重新 prebuild 并以 ARM64 `assembleRelease` 构建，通过 V2 签名验证，包含 `POST_NOTIFICATIONS` 权限；当前 APK 没有 EAS 项目 ID 或平台凭据。最终 Android/iOS/Web JS 导出通过，iOS 仍未原生编译。
 

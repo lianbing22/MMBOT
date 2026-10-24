@@ -1,7 +1,7 @@
 {
   "name": "ds-bot",
   "version": "0.1.3",
-  "description": "DS Bot: a team of long-lived Bots for DeepSeek Harness, with Main Bots, Bot-to-Bot messages and group chats",
+  "description": "MMBOT: a team of long-lived Bots for DeepSeek Harness, with Main Bots, Bot-to-Bot messages and group chats",
   "keywords": [
     "dsh-plugin",
     "deepseek-harness",
@@ -11,13 +11,13 @@
     "multi-agent",
     "agents"
   ],
-  "homepage": "https://github.com/QingJ01/DS-Bot-App#readme",
+  "homepage": "https://github.com/lianbing22/MMBOT#readme",
   "bugs": {
-    "url": "https://github.com/QingJ01/DS-Bot-App/issues"
+    "url": "https://github.com/lianbing22/MMBOT/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/QingJ01/DS-Bot-App.git",
+    "url": "git+https://github.com/lianbing22/MMBOT.git",
     "directory": "ds-bot"
   },
   "license": "Apache-2.0",

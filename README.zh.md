@@ -1,15 +1,15 @@
-# DS Bot App
+# MMBOT
 
-**把你的 Bot 团队，带到手机上。**
+**把你的 Bot 团队，带到电脑和手机上。**
 
-中文 · [English](README.md) · [安装配置](docs/getting-started.zh.md) · [下载](https://github.com/QingJ01/DS-Bot-App/releases/latest)
+中文 · [English](README.md) · [安装配置](docs/getting-started.zh.md) · [下载](https://github.com/lianbing22/MMBOT/releases/latest)
 
-DS Bot App 连接自己电脑或服务器上的 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）。你可以和专业 Bot 对话，让多个 Bot 在群聊中协作，并在手机上查看工具执行、管理任务。手机与电脑共用同一套会话、模型和工作区。
+MMBOT 连接自己电脑或服务器上的 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）。你可以和专业 Bot 对话，让多个 Bot 在群聊中协作，在桌面或手机上查看工具执行、管理任务。桌面 App 自带锁定版本的 DSH；手机与电脑共用同一套会话、模型和工作区。
 
 <p align="center">
-  <img src="docs/images/mobile/home.zh.png?v=0.1.0-15" width="250" alt="DS Bot App 会话主页">
+  <img src="docs/images/mobile/home.zh.png?v=0.1.0-15" width="250" alt="MMBOT 会话主页">
   <img src="docs/images/mobile/chat.zh.png?v=0.1.0-15" width="250" alt="Bot 对话与悬浮聊天控件">
-  <img src="docs/images/mobile/night.zh.png?v=0.1.0-15" width="250" alt="DS Bot App 夜间模式">
+  <img src="docs/images/mobile/night.zh.png?v=0.1.0-15" width="250" alt="MMBOT 夜间模式">
 </p>
 
 <p align="center">会话主页 · Bot 对话 · 夜间模式</p>
@@ -52,11 +52,11 @@ Bot 对话换段时，定时任务保留原 Session 绑定，到期提醒转发�
 ## 快速开始
 
 1. 安装 [DSH Desktop](https://github.com/deepseek-ai/deepseek-harness/releases)，打开 **插件 → 添加插件**，粘贴下方安装文本并安装、启用、重启。
-2. 在电脑上配置模型；从 [v0.1.3 Release](https://github.com/QingJ01/DS-Bot-App/releases/tag/v0.1.3) 下载 `dsbot-android-arm64-v0.1.3.apk` 安装到手机；`dsbot-android-x86_64-v0.1.3.apk` 用于对应模拟器。
-3. 手机安装 APK。电脑打开 DS Bot **设置 → 移动设备 → 启用手机连接**，手机扫码，电脑批准设备。
+2. 在电脑上配置模型。本版本的手机 App 仍叫 **DS Bot**，MMBOT 的名称会随它的下一个版本到来；从 [v0.1.3 Release](https://github.com/lianbing22/MMBOT/releases/tag/v0.1.3) 下载 `dsbot-android-arm64-v0.1.3.apk` 安装到手机；`dsbot-android-x86_64-v0.1.3.apk` 用于对应模拟器。
+3. 手机安装 APK。电脑打开 MMBOT **设置 → 移动设备 → 启用手机连接**，手机扫码，电脑批准设备。
 
 ```text
-github:QingJ01/DS-Bot-App#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot
+github:lianbing22/MMBOT#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot
 ```
 
 以上是完整安装文本，直接复制。Release 还提供 `ds-bot-0.1.3.tgz`；下载后使用 `SHA256SUMS` 校验。该固定地址装不上时（例如电脑没有装 Git），改为填写这个归档的完整路径安装。插件归档 SHA-256：`ab65ce3033a88890c3410c371aa7a2fc8c88f96437f4620889128b6a7b1c5b1f`。
@@ -77,7 +77,7 @@ iOS 源码已提供，当前没有 IPA 安装包；构建与支持说明见 [iOS
 
 ### 网页搜索
 
-DS Bot 会把 `auto` 搜索 provider 选为整个 profile 的后端。禁用 `web-search-auto` 时，也要为该 profile 选择另一个已注册的搜索 provider。详见[网页搜索说明](ds-bot/README.md#web-search)和[恢复步骤](docs/known-issues.zh.md#关掉web-search-auto后所有会话的网页搜索都失败)。
+MMBOT 会把 `auto` 搜索 provider 选为整个 profile 的后端。禁用 `web-search-auto` 时，也要为该 profile 选择另一个已注册的搜索 provider。详见[网页搜索说明](ds-bot/README.md#web-search)和[恢复步骤](docs/known-issues.zh.md#关掉web-search-auto后所有会话的网页搜索都失败)。
 
 ## Docker
 
@@ -85,11 +85,11 @@ DS Bot 会把 `auto` 搜索 provider 选为整个 profile 的后端。禁用 `we
 
 ## 桌面应用
 
-桌面应用位于 [`app/`](app/README.md)（英文）。它自带 DSH，不用先装 DSH。在 [Releases](https://github.com/QingJ01/DS-Bot-App/releases/latest) 里下载：
+桌面应用位于 [`app/`](app/README.md)（英文）。它自带 DSH，不用先装 DSH。桌面安装包随每个 MMBOT 版本发布；本仓库承接的 `v0.1.3` 只包含插件归档和手机安装包，此前 DS Bot App 的桌面安装包仍留在原仓库，直到 MMBOT 的第一个桌面版本发布。届时在 [Releases](https://github.com/lianbing22/MMBOT/releases/latest) 里可下载的文件名是：
 
-- Windows（x64）：`DS-Bot-App-<版本>-win-x64.exe`。运行它即可安装，只装给当前用户，不要管理员权限。如果提示“Windows 已保护你的电脑”，点 **更多信息** → **仍要运行**。
-- macOS：Apple 芯片下载 `DS-Bot-App-<版本>-mac-arm64.zip`，Intel 下载 `DS-Bot-App-<版本>-mac-x64.zip`。Safari 会自动解压；把 **DS Bot App** 拖进 **应用程序**，再打开。如果提示无法检查这个 App，打开 **系统设置** → **隐私与安全性**，点 **仍要打开**。
-- Linux（x64）：本项目也能构建 `DS-Bot-App-<版本>-linux-x86_64.AppImage` 和 `DS-Bot-App-<版本>-linux-amd64.deb`；CI 会构建并校验两者，但本 fork 的发布流程暂未把它们附到 Release 上。需要的人在 Linux 上进入 `app/` 运行 `npm run dist`，细节见 [`app/README.md`](app/README.md) 的 Linux 部分。
+- Windows（x64）：`MMBOT-<版本>-win-x64.exe`。运行它即可安装，只装给当前用户，不要管理员权限。如果提示“Windows 已保护你的电脑”，点 **更多信息** → **仍要运行**。
+- macOS：Apple 芯片下载 `MMBOT-<版本>-mac-arm64.zip`，Intel 下载 `MMBOT-<版本>-mac-x64.zip`。Safari 会自动解压；把 **MMBOT** 拖进 **应用程序**，再打开。如果提示无法检查这个 App，打开 **系统设置** → **隐私与安全性**，点 **仍要打开**。
+- Linux（x64）：本项目也能构建 `MMBOT-<版本>-linux-x86_64.AppImage` 和 `MMBOT-<版本>-linux-amd64.deb`；CI 会构建并校验两者，但本 fork 的发布流程暂未把它们附到 Release 上。需要的人在 Linux 上进入 `app/` 运行 `npm run dist`，细节见 [`app/README.md`](app/README.md) 的 Linux 部分。
 
 第一次打开时，App 会问数据和 Bot 的文件放在哪里，并可以从你的 dsh 复制 Bot 团队（只读取你的 dsh，不改它）。在 App 的设置里配好模型就能用。Windows 版会自动更新；macOS 版和 Linux 的 deb 有新版本时会提示你下载。
 
@@ -123,6 +123,8 @@ App 使用 React Native 与 Expo，共用 SDK 连接 DSH 插件。
 
 ## 致谢与许可
 
-本项目基于 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 和上游 [DS Bot](https://github.com/Fei2411/DeepSeek-Bot) 开发。每个 Bot 都在 DSH 会话中工作，并使用 DSH 工具和模型。第三方声明见 [NOTICE](NOTICE)。
+MMBOT 是 [DS Bot App](https://github.com/QingJ01/DS-Bot-App) 的品牌化分支，而 DS Bot App 又是 [DS Bot](https://github.com/Fei2411/DeepSeek-Bot) 面向手机端的分支。插件与桌面 App 现在以 MMBOT 发布；手机 App 在下一版之前仍沿用 DS Bot 的名称与包名。
 
-[Apache License 2.0](LICENSE)。DS Bot App 是独立社区项目，并非 DeepSeek 官方产品。
+本项目基于 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 开发。每个 Bot 都在 DSH 会话中工作，并使用 DSH 工具与模型。上游声明见 [NOTICE](NOTICE)。
+
+[Apache License 2.0](LICENSE)。MMBOT 是独立项目，并非 DeepSeek 官方产品。

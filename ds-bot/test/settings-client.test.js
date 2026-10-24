@@ -36,6 +36,6 @@ test('settings opens with every navigation icon rendered by React', () => {
 
 test('plugin updates, About and unknown settings routes render without crashing', () => {
   assert.match(render('updates'), /<h2>Plugin updates<\/h2>/)
-  assert.match(render('about'), /<h2>About DS Bot<\/h2>/)
+  assert.match(render('about'), /<h2>About MMBOT<\/h2>/)
   assert.match(render('unknown'), /<h2>General<\/h2>/)
 })

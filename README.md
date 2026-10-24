@@ -1,15 +1,15 @@
-# DS Bot App
+# MMBOT
 
-**Your Bot team, on your phone.**
+**Your Bot team, on your desktop and your phone.**
 
-English · [中文](README.zh.md) · [Install](docs/getting-started.md) · [Download](https://github.com/QingJ01/DS-Bot-App/releases/latest)
+English · [中文](README.zh.md) · [Install](docs/getting-started.md) · [Download](https://github.com/lianbing22/MMBOT/releases/latest)
 
-DS Bot App connects your phone to the Bots running on your own [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH) computer or server. Chat with a specialist, bring several Bots into a group, and follow their tools and tasks from one app. The phone shares the host's conversations, models and workspace.
+MMBOT connects your desktop and your phone to the Bots running on your own [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH) computer or server. Chat with a specialist, bring several Bots into a group, and follow their tools and tasks from either one. The desktop app brings its own pinned DSH; the phone shares the host's conversations, models and workspace.
 
 <p align="center">
-  <img src="docs/images/mobile/home.en.png?v=0.1.0-15" width="250" alt="DS Bot App conversation home">
+  <img src="docs/images/mobile/home.en.png?v=0.1.0-15" width="250" alt="MMBOT conversation home">
   <img src="docs/images/mobile/chat.en.png?v=0.1.0-15" width="250" alt="A Bot conversation with floating controls">
-  <img src="docs/images/mobile/night.en.png?v=0.1.0-15" width="250" alt="DS Bot App in dark mode">
+  <img src="docs/images/mobile/night.en.png?v=0.1.0-15" width="250" alt="MMBOT in dark mode">
 </p>
 
 <p align="center">Conversation home · Bot chat · Dark mode</p>
@@ -52,11 +52,11 @@ Screenshots use demonstration data. [Capture details](docs/images/mobile/README.
 ## Get started
 
 1. Install [DSH Desktop](https://github.com/deepseek-ai/deepseek-harness/releases). Open **Plugins → Add plugin**, paste the text below, install, enable and restart.
-2. Configure your model on the computer. Download `dsbot-android-arm64-v0.1.3.apk` for phones from the [v0.1.3 Release](https://github.com/QingJ01/DS-Bot-App/releases/tag/v0.1.3); `dsbot-android-x86_64-v0.1.3.apk` is for matching emulators.
-3. Install the APK. On the computer, open DS Bot **Settings → Mobile devices → Enable phone connection**, scan its QR with the phone and approve the device.
+2. Configure your model on the computer. The phone app is still named **DS Bot** in this release; the MMBOT name arrives with its next build. Download `dsbot-android-arm64-v0.1.3.apk` for phones from the [v0.1.3 Release](https://github.com/lianbing22/MMBOT/releases/tag/v0.1.3); `dsbot-android-x86_64-v0.1.3.apk` is for matching emulators.
+3. Install the APK. On the computer, open MMBOT **Settings → Mobile devices → Enable phone connection**, scan its QR with the phone and approve the device.
 
 ```text
-github:QingJ01/DS-Bot-App#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot
+github:lianbing22/MMBOT#a115f2b722387b3a401bd34e26fe48ad7d34f78d&path:ds-bot
 ```
 
 Copy the complete line. The release also includes `ds-bot-0.1.3.tgz`; verify release downloads with `SHA256SUMS`. If the pinned address cannot be installed here, for example on a computer without Git, install that archive from its full path instead. The plugin archive SHA-256 is `ab65ce3033a88890c3410c371aa7a2fc8c88f96437f4620889128b6a7b1c5b1f`.
@@ -77,7 +77,7 @@ Host plugin upgrades and repair: [Plugin updates](docs/plugin-updates.md).
 
 ### Web search
 
-DS Bot selects its `auto` search provider for the whole profile. If you disable `web-search-auto`, also select another registered search provider in that profile. See [Web search](ds-bot/README.md#web-search) and the [recovery steps](docs/known-issues.md#web-search-fails-everywhere-after-turning-off-web-search-auto).
+MMBOT selects its `auto` search provider for the whole profile. If you disable `web-search-auto`, also select another registered search provider in that profile. See [Web search](ds-bot/README.md#web-search) and the [recovery steps](docs/known-issues.md#web-search-fails-everywhere-after-turning-off-web-search-auto).
 
 ## Docker
 
@@ -85,11 +85,11 @@ Build the image from this repository checkout; see [`docker/README.md`](docker/R
 
 ## Desktop app
 
-The desktop app is in [`app/`](app/README.md). It brings its own DSH, so you don't need to install DSH first. Download it from [Releases](https://github.com/QingJ01/DS-Bot-App/releases/latest):
+The desktop app is in [`app/`](app/README.md). It brings its own DSH, so you don't need to install DSH first. Desktop installers are attached to each MMBOT release; the carried-over `v0.1.3` release here holds the plugin archive and the phone builds, and the previous DS Bot App installers stay on the earlier repository until the first MMBOT desktop build. The names to expect, from [Releases](https://github.com/lianbing22/MMBOT/releases):
 
-- Windows (x64): `DS-Bot-App-<version>-win-x64.exe`. Run it; it installs for your user only, without administrator rights. If Windows shows "Windows protected your PC", select **More info** → **Run anyway**.
-- macOS: `DS-Bot-App-<version>-mac-arm64.zip` for an Apple chip, `DS-Bot-App-<version>-mac-x64.zip` for Intel. Safari unzips it by itself; drag **DS Bot App** into **Applications** and open it. When macOS says it cannot check the app, open **System Settings** → **Privacy & Security** and select **Open Anyway**.
-- Linux (x64): the app also builds as `DS-Bot-App-<version>-linux-x86_64.AppImage` and `DS-Bot-App-<version>-linux-amd64.deb`; CI builds and checks both, but this fork's release flow does not attach them to Releases yet. Build one with `npm run dist` in `app/` on Linux; see the Linux part of [`app/README.md`](app/README.md).
+- Windows (x64): `MMBOT-<version>-win-x64.exe`. Run it; it installs for your user only, without administrator rights. If Windows shows "Windows protected your PC", select **More info** → **Run anyway**.
+- macOS: `MMBOT-<version>-mac-arm64.zip` for an Apple chip, `MMBOT-<version>-mac-x64.zip` for Intel. Safari unzips it by itself; drag **MMBOT** into **Applications** and open it. When macOS says it cannot check the app, open **System Settings** → **Privacy & Security** and select **Open Anyway**.
+- Linux (x64): the app also builds as `MMBOT-<version>-linux-x86_64.AppImage` and `MMBOT-<version>-linux-amd64.deb`; CI builds and checks both, but this fork's release flow does not attach them to Releases yet. Build one with `npm run dist` in `app/` on Linux; see the Linux part of [`app/README.md`](app/README.md).
 
 At the first start the app asks where to keep its data and the Bots' files, and offers to copy a Bot team from your DSH (it only reads your DSH). Set up a model in its settings. The Windows app updates itself; the macOS app and a Linux deb tell you when a new version is ready to download.
 
@@ -123,6 +123,8 @@ This fork synchronizes the frozen upstream tree at `1bebe826f74e9a72cabafd3b8060
 
 ## Credits and license
 
-This project builds on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) and the upstream [DS Bot](https://github.com/Fei2411/DeepSeek-Bot). Every Bot works in DSH Sessions and uses DSH tools and models. See [NOTICE](NOTICE) for third-party notices.
+MMBOT is a rebranded fork of [DS Bot App](https://github.com/QingJ01/DS-Bot-App), the mobile-focused fork of [DS Bot](https://github.com/Fei2411/DeepSeek-Bot). The plugin and the desktop app ship as MMBOT; the phone app keeps its DS Bot name and package name until its next release.
 
-[Apache License 2.0](LICENSE). DS Bot App is an independent community project, not an official DeepSeek product.
+The project builds on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness). Every Bot works in DSH Sessions and uses DSH tools and models. See [NOTICE](NOTICE) for the upstream notices.
+
+[Apache License 2.0](LICENSE). MMBOT is an independent project, not an official DeepSeek product.

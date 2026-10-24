@@ -14,23 +14,23 @@ English | [中文](known-issues.zh.md)
 | `@Anvil你看下` (no space after the name) | a file "Anvil你看下" |
 | `@Anvil，帮我查` (punctuation after the name) | a file "Anvil，帮我查" |
 
-**What is not affected:** who answers. DS Bot reads "@Name" by its own rule, so the Bot you named is called. When the message is sent, it shows the Bot's mark and name as usual.
+**What is not affected:** who answers. MMBOT reads "@Name" by its own rule, so the Bot you named is called. When the message is sent, it shows the Bot's mark and name as usual.
 
 **Tip:** put a space after the name (`@Anvil 你看下`). Then a name without a space shows as the Bot while it waits, too.
 
 **Why:** DeepSeek Harness draws these waiting rows itself and reads "@" up to the next space. A plugin cannot change how they are drawn yet.
 
-## DS Bot does not load: "disabling profile plugin row "bot""
+## MMBOT does not load: "disabling profile plugin row "bot""
 
-**Where:** DSH Web (or Desktop) starts, but DS Bot is not there. The log has this line:
+**Where:** DSH Web (or Desktop) starts, but MMBOT is not there. The log has this line:
 
 ```text
 dsh: disabling profile plugin row "bot": its declared peer dependencies cannot be validated: Cannot read properties of undefined (reading 'startsWith')
 ```
 
-Installing another version of DS Bot does not help.
+Installing another version of MMBOT does not help.
 
-**Why:** before it loads a plugin, DeepSeek Harness checks each plugin row of the profile. This message means a row has the id `bot` but no package name. DS Bot adds its own row with the name `ds-bot`, so the row without a name most likely comes from a file in the profile folder, such as an override `- id: bot` in `cordis.patch.yml` that no longer matches DS Bot's row. We could not reproduce this, so we do not know yet how such a row is left behind.
+**Why:** before it loads a plugin, DeepSeek Harness checks each plugin row of the profile. This message means a row has the id `bot` but no package name. MMBOT adds its own row with the name `ds-bot`, so the row without a name most likely comes from a file in the profile folder, such as an override `- id: bot` in `cordis.patch.yml` that no longer matches MMBOT's row. We could not reproduce this, so we do not know yet how such a row is left behind.
 
 **What to do:** the profile folder is `~/.dsh/profiles/web/` (Windows: `C:\Users\<user>\.dsh\profiles\web\`), or `profiles/web/` in `DSH_HOME` when it is set. For Desktop, use `profiles/desktop/` instead.
 
@@ -53,7 +53,7 @@ Error: configured web provider "auto" is not registered
 
 The error code is `WEB_PROVIDER_CONFIGURED_MISSING`.
 
-**Why:** DS Bot's `cordis.patch.yml` sets the `web` row's `searchProvider` to `auto` whether or not the `web-search-auto` row is on, and DeepSeek Harness does not fall back to another provider when the one it names is missing.
+**Why:** MMBOT's `cordis.patch.yml` sets the `web` row's `searchProvider` to `auto` whether or not the `web-search-auto` row is on, and DeepSeek Harness does not fall back to another provider when the one it names is missing.
 
 **What to do:** the profile folder is the same as in the entry above.
 

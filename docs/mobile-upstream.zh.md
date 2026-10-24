@@ -15,14 +15,14 @@
 - Bot 模型界面提供主机实际返回的思考级别；默认使用模型自身设置。更换模型清除旧思考级别。权限选项只采用主机提供的预设，自动审查不作为永久 Bot 权限。
 - 群聊显示成员工作/等待批准状态；群聊正文和详情页都能处理审批。群审批由上游统一拥有，手机不再用另一条 promise 拦住群轮次；设备撤销、成员移除、归属变化或重复回答均拒绝。
 - 同一轮多个步骤的思考合为一个展开入口，原始历史和缓存不被改写。
-- 新增“关于 DS Bot”：手机端、插件与 DSH 版本，检查更新、已验证的 DSH 更新、源码/发行说明/反馈/Star 链接。更新需要在界面再次确认；桌面打包版通过其自己的更新器更新。
+- 新增“关于 MMBOT”：手机端、插件与 DSH 版本，检查更新、已验证的 DSH 更新、源码/发行说明/反馈/Star 链接。更新需要在界面再次确认；桌面打包版通过其自己的更新器更新。
 - 夜间模式、品牌蓝 `#3964FE`、中英文、长按消息操作以及鱼形入口延续。
 
 ## 验证与安装
 
 在隔离的官方 npm DSH `0.2.0-rc.2` 和 mock 模型上验证，没有修改 DSH 源码或访问用户自己的 DSH 数据。插件 533、手机端 45、SDK 25 项测试通过；生成客户端一致性、TypeScript 和 oxlint 通过。真实 DSH 的 32 步集成流程通过。ARM64 与 x86_64 Android release 构建通过。
 
-交付目录：`/workspace/artifacts/dsbot-upstream-20261012/`。新功能的主机 API 也有变化，请同时更新 DS Bot 主机插件与手机 APK。x86_64 APK 仅用于测试模拟器，带专用测试证书；ARM64 APK 使用正常系统 TLS 信任。iOS 未在本轮编译或实测。
+交付目录：`/workspace/artifacts/dsbot-upstream-20261012/`。新功能的主机 API 也有变化，请同时更新 MMBOT 主机插件与手机 APK。x86_64 APK 仅用于测试模拟器，带专用测试证书；ARM64 APK 使用正常系统 TLS 信任。iOS 未在本轮编译或实测。
 
 云端无 KVM 模拟器首次启动发生 System UI 无响应，已用实际系统弹窗处理后继续验收。原生页面结果、截图、安装包 SHA-256 和测试环境清理记录单独保存；不将编译通过替代界面验收。
 
@@ -109,7 +109,7 @@ Fork 保留独立的 `0.1.2` 版本线、手机桥接、安装完整性规则、
 
 本分支继续使用 `docs/releasing.md` 的发布流程；不采纳上游的维护者资产：`.agents/skills/`（issue 分诊与 GIF 录制）和 `.github/workflows/release.yml`。
 
-发布资产名保持本 fork 的 `DS-Bot-App-<version>-…` 规则（macOS zip 与 Linux deb），更新日志行保留 `DS Bot App` 产品名，Linux 可执行文件名保持 `executableName: ds-bot-app`。
+发布资产名保持本 fork 的 `MMBOT-<version>-…` 规则（macOS zip 与 Linux deb），更新日志行保留 `MMBOT` 产品名，Linux 可执行文件名保持 `executableName: mmbot`。
 
 本次同步不涉及手机桥接与手机 App：上游 v0.2.1 未改动 `apps/mobile/` 和 `packages/mobile-sdk/`。`checkShownView` 现在会一并返回规范化后的视图，本 fork 的临界大视图夹具已按新契约调整。
 

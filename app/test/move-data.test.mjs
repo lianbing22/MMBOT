@@ -60,8 +60,8 @@ test('the new data location is an empty or new folder apart from the data, the t
 })
 
 test('the program folder is the whole app bundle on macOS', () => {
-  assert.equal(installFolder('/Applications/DS Bot App.app/Contents/MacOS/DS Bot App', 'darwin'), '/Applications/DS Bot App.app')
-  assert.equal(installFolder(join('C:', 'Programs', 'DS Bot App', 'DS Bot App.exe'), 'win32'), join('C:', 'Programs', 'DS Bot App'))
+  assert.equal(installFolder('/Applications/MMBOT.app/Contents/MacOS/MMBOT', 'darwin'), '/Applications/MMBOT.app')
+  assert.equal(installFolder(join('C:', 'Programs', 'MMBOT', 'MMBOT.exe'), 'win32'), join('C:', 'Programs', 'MMBOT'))
 })
 
 test('the data is copied whole, without the lock and the temporary folders, and the old folder stays', async (t) => {

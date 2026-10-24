@@ -19,7 +19,7 @@ export async function unreadableSessions(persistence, ids) {
       }
     } catch (error) {
       if (error?.name === 'SessionFormatUnsupportedError') unreadable.push(id)
-      else console.warn(`DS Bot App: could not read ${id} while checking the team: ${error instanceof Error ? error.message : String(error)}`)
+      else console.warn(`MMBOT: could not read ${id} while checking the team: ${error instanceof Error ? error.message : String(error)}`)
     }
   }
   return unreadable

@@ -51,8 +51,8 @@ function fakeChild(code) {
 
 const registryLatest = dsBot => ({ [`https://registry.npmjs.org/${PKG.name}/latest`]: { version: PKG.version, dsBot } })
 const githubLatest = (tag, manifest) => ({
-  'https://api.github.com/repos/QingJ01/DS-Bot-App/releases/latest': { tag_name: tag },
-  [`https://raw.githubusercontent.com/QingJ01/DS-Bot-App/${tag}/ds-bot/package.json`]: manifest,
+  'https://api.github.com/repos/lianbing22/MMBOT/releases/latest': { tag_name: tag },
+  [`https://raw.githubusercontent.com/lianbing22/MMBOT/${tag}/ds-bot/package.json`]: manifest,
 })
 
 test('concurrent Harness checks all return the shared lookup status', async () => {
@@ -73,11 +73,11 @@ test('a synchronous npm launcher failure does not leave Harness installing forev
 })
 
 test('Harness compatibility comes from the released revision rather than its original tag', async () => {
-  const { rt } = start({ source: 'github:QingJ01/DS-Bot-App#v0.1.0&path:ds-bot', answers: {
-    'https://api.github.com/repos/QingJ01/DS-Bot-App/releases/latest': {
+  const { rt } = start({ source: 'github:lianbing22/MMBOT#v0.1.0&path:ds-bot', answers: {
+    'https://api.github.com/repos/lianbing22/MMBOT/releases/latest': {
       tag_name: 'v9.0.0', assets: [{ name: 'ds-bot-9.0.0-r2.tgz' }, { name: 'SHA256SUMS-r2' }],
     },
-    'https://raw.githubusercontent.com/QingJ01/DS-Bot-App/v9.0.0-r2/ds-bot/package.json': { dsBot: { verifiedDsh: '9.9.9' } },
+    'https://raw.githubusercontent.com/lianbing22/MMBOT/v9.0.0-r2/ds-bot/package.json': { dsBot: { verifiedDsh: '9.9.9' } },
   } })
   assert.equal((await rt.dshUpdateCheck()).verified, '9.9.9')
 })
@@ -125,13 +125,13 @@ test('a minBot newer than the running bot gates the DSH update until the bot goe
 })
 
 test('a git or local install asks the public repo\'s latest release for its declaration', async () => {
-  for (const source of ['github:QingJ01/DS-Bot-App#v0.1.0&path:/ds-bot', 'link:/work/ds-bot', undefined]) {
+  for (const source of ['github:lianbing22/MMBOT#v0.1.0&path:/ds-bot', 'link:/work/ds-bot', undefined]) {
     const { rt, fetched } = start({ source, answers: githubLatest('v9.0.0', { dsBot: { verifiedDsh: '8.8.8' } }) })
     const view = await rt.dshUpdateCheck()
     assert.equal(view.verified, '8.8.8')
     assert.deepEqual(fetched, [
-      'https://api.github.com/repos/QingJ01/DS-Bot-App/releases/latest',
-      'https://raw.githubusercontent.com/QingJ01/DS-Bot-App/v9.0.0/ds-bot/package.json',
+      'https://api.github.com/repos/lianbing22/MMBOT/releases/latest',
+      'https://raw.githubusercontent.com/lianbing22/MMBOT/v9.0.0/ds-bot/package.json',
     ])
   }
 })

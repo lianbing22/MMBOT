@@ -5,14 +5,14 @@ import { join } from 'node:path'
 import { afterEach, test } from 'node:test'
 import { cleanVersion, install, newer, registryPlan, releaseRef, sourceOf, updateFailure } from '../src/host/update.js'
 const PKG=JSON.parse(readFileSync(new URL('../package.json',import.meta.url),'utf8'))
-const API='https://api.github.com/repos/QingJ01/DS-Bot-App/',SHA='b'.repeat(40),OLD='a'.repeat(40)
-const spec=sha=>`github:QingJ01/DS-Bot-App#${sha}&path:ds-bot`
+const API='https://api.github.com/repos/lianbing22/MMBOT/',SHA='b'.repeat(40),OLD='a'.repeat(40)
+const spec=sha=>`github:lianbing22/MMBOT#${sha}&path:ds-bot`
 const original=globalThis.fetch,dirs=[]
 afterEach(()=>{globalThis.fetch=original;for(const dir of dirs.splice(0))rmSync(dir,{recursive:true,force:true,maxRetries:5})})
 const flush=async()=>{for(let i=0;i<30;i++)await Promise.resolve()}
 function fixture({source=spec(OLD),version='9.0.0',revision=2,result={application:'restart-required',version},installBundle,config={},home}={}){
  let current=source;const calls=[],fetched=[],warnings=[],ref=`v${version}${revision?`-r${revision}`:''}`
- const manifest=`https://raw.githubusercontent.com/QingJ01/DS-Bot-App/${SHA}/ds-bot/package.json`
+ const manifest=`https://raw.githubusercontent.com/lianbing22/MMBOT/${SHA}/ds-bot/package.json`
  const answers={
   [API+'releases/latest']:{tag_name:`v${version}`,assets:[`ds-bot-${version}${revision?`-r${revision}`:''}.tgz`,revision?`SHA256SUMS-r${revision}`:'SHA256SUMS'].map(name=>({name}))},
   [API+'commits/'+ref]:{sha:SHA},[manifest]:{...PKG,version},
@@ -52,14 +52,14 @@ test('same-version revisions are offered from the installed tag identity',async(
 test('current releases require explicit repair; unknown commits are not silently replaced',async()=>{
  for(const source of [spec(SHA),spec('c'.repeat(40))]){
   const f=fixture({source,version:PKG.version}),view=await f.rt.updateCheck();assert.equal(view.available,false);assert.equal(view.canRepair,true)
-  assert.throws(()=>f.rt.updateStart(),/No DS Bot update/);f.rt.updateStart({repair:true});await flush();assert.equal(f.calls.length,1)
+  assert.throws(()=>f.rt.updateStart(),/No MMBOT update/);f.rt.updateStart({repair:true});await flush();assert.equal(f.calls.length,1)
  }
  const f=fixture({version:'0.0.1'}),view=await f.rt.updateCheck();assert.equal(view.available,false);assert.equal(view.canRepair,false)
  const newerRevision=fixture({version:PKG.version,revision:2,source:`file:/tmp/ds-bot-${PKG.version}-r3.tgz`})
  assert.equal((await newerRevision.rt.updateCheck()).canRepair,false)
 })
 test('development folders, custom forks and disabled checks never ask the network',async()=>{
- for(const source of ['link:/work/a','file:/work/a','github:QingJ01/DS-Bot-App#main','github:other/project#v0.1.0',undefined]){
+ for(const source of ['link:/work/a','file:/work/a','github:lianbing22/MMBOT#main','github:other/project#v0.1.0',undefined]){
   const f=fixture();f.setSource(source);assert.equal((await f.rt.updateCheck()).available,false);assert.deepEqual(f.fetched,[])
  }
  const f=fixture({config:{updateCheck:false}});await f.rt.updateCheck({fresh:true});assert.deepEqual(f.fetched,[])
@@ -77,13 +77,13 @@ test('the desktop app updates as a whole without fetching plugin releases', asyn
   assert.equal(view.source, 'app')
   assert.equal(view.available, false)
   assert.deepEqual(f.fetched, [])
-  assert.throws(() => f.rt.updateStart(), /No DS Bot update/)
+  assert.throws(() => f.rt.updateStart(), /No MMBOT update/)
 })
 test('concurrent checks share one lookup and network failures clear a stale offer',async()=>{
  const f=fixture(),views=await Promise.all([f.rt.updateCheck(),f.rt.updateCheck(),f.rt.updateCheck({fresh:true})])
  assert.ok(views.every(view=>view.available));assert.equal(f.fetched.filter(url=>url.endsWith('releases/latest')).length,1)
  f.answers[API+'releases/latest']=Object.assign(Error('limited'),{status:403});const failed=await f.rt.updateCheck({fresh:true})
- assert.equal(failed.available,false);assert.equal(failed.checkErrorCode,'rate-limit');assert.throws(()=>f.rt.updateStart(),/No DS Bot update/)
+ assert.equal(failed.available,false);assert.equal(failed.checkErrorCode,'rate-limit');assert.throws(()=>f.rt.updateStart(),/No MMBOT update/)
 })
 test('stale UI targets and changed installation sources cannot replace a checkout',async()=>{
  const f=fixture();await f.rt.updateCheck();assert.throws(()=>f.rt.updateStart({targetId:'stale'}),/available update changed/)

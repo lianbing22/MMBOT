@@ -6,7 +6,7 @@
 
 ## 下载与准备
 
-从 [v0.1.1 Release](https://github.com/QingJ01/DS-Bot-App/releases/tag/v0.1.1) 下载 `dsbot-android-arm64-v0.1.1-r2.apk`、`SHA256SUMS-r2` 和主机插件 `ds-bot-0.1.1-r2.tgz`。另从仓库下载 [`android-device.py`](../apps/mobile/scripts/android-device.py)，与 APK 放在同一目录。
+从 [v0.1.1 Release](https://github.com/lianbing22/MMBOT/releases/tag/v0.1.1) 下载 `dsbot-android-arm64-v0.1.1-r2.apk`、`SHA256SUMS-r2` 和主机插件 `ds-bot-0.1.1-r2.tgz`。另从仓库下载 [`android-device.py`](../apps/mobile/scripts/android-device.py)，与 APK 放在同一目录。
 
 本地只需：
 

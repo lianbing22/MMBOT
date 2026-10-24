@@ -531,7 +531,7 @@ export function install(rt) {
           // The round moved on without this member: the log shows the call and then
           // silence, which reads as a lost message. The group is told the baton was
           // dropped, and what brings the member back.
-          appendRoom(room, { who: 'DS Bot', kind: 'notice', reason: 'missed', names: [member.name], minutes: Math.round(ROOM_REPLY_TIMEOUT_MS / 60000) })
+          appendRoom(room, { who: 'MMBOT', kind: 'notice', reason: 'missed', names: [member.name], minutes: Math.round(ROOM_REPLY_TIMEOUT_MS / 60000) })
         }
       }
       const spoken = final === undefined ? said : [...said, final]
@@ -549,7 +549,7 @@ export function install(rt) {
     // user: the log's "@Name" lines are real calls that wait, not drops in silence.
     if (round.parked !== undefined) {
       const limit = relayLimit(room)
-      appendRoom(room, { who: 'DS Bot', kind: 'notice', reason: 'paused', names: round.parked, limit })
+      appendRoom(room, { who: 'MMBOT', kind: 'notice', reason: 'paused', names: round.parked, limit })
       round.replies.push({ kind: 'paused', names: round.parked, count: limit, time: Date.now() })
       await rt.save()
     }
@@ -963,7 +963,7 @@ export function install(rt) {
 
   // A group chat's own Session never consults the model: models drift from "only call
   // group_relay" (they message one member directly when the user names it), so the
-  // relay step is synthesized here. Auxiliary calls such as titles, and DS Bot's own
+  // relay step is synthesized here. Auxiliary calls such as titles, and MMBOT's own
   // calls for the room such as image readings, still reach the model.
   ctx.on('llm/stream', (options, next) => {
     if (options.sessionId === undefined || options.purpose !== undefined || rt.ownRequest(options)) return next()

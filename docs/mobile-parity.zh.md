@@ -1,10 +1,10 @@
-# 移动端与 DS Bot / DeepSeek Harness 对齐清单
+# 移动端与 MMBOT / DeepSeek Harness 对齐清单
 
-本清单以本仓库 DS Bot 源码和所用 Harness 版本的公开插件文档为准。Grok 仅用于手机交互尚无原版对应时的参考，不能覆盖原版 Bot 的权限、群聊、长期会话和数据语义。
+本清单以本仓库 MMBOT 源码和所用 Harness 版本的公开插件文档为准。Grok 仅用于手机交互尚无原版对应时的参考，不能覆盖原版 Bot 的权限、群聊、长期会话和数据语义。
 
-核对基线：DS Bot `351ae74` 加当前工作区改动；Harness checkout `5badb15`；第一轮移动客户端 `0.1.0`。以下“初始移动端”指本轮补齐开始前的源码状态，不能据此判断后续已修改代码仍存在同一差距。已验证交付另见[移动端验证记录](mobile-validation.zh.md)。这是源码及公开接口审查；尚未据此声称两端像素一致或所有原生设备行为已验证。
+核对基线：MMBOT `351ae74` 加当前工作区改动；Harness checkout `5badb15`；第一轮移动客户端 `0.1.0`。以下“初始移动端”指本轮补齐开始前的源码状态，不能据此判断后续已修改代码仍存在同一差距。已验证交付另见[移动端验证记录](mobile-validation.zh.md)。这是源码及公开接口审查；尚未据此声称两端像素一致或所有原生设备行为已验证。
 
-状态分类：**界面可补**＝数据和移动接口已有；**桥接可补**＝DS Bot 自有能力或 Harness 公开服务已有，但移动协议尚未暴露；**平台适配**＝能力依赖桌面、浏览器或原生环境，需要明确等价实现；**待公开接口核实**＝不能先写成“不支持”。“手机尚未实现”不是“上游 API 缺失”。
+状态分类：**界面可补**＝数据和移动接口已有；**桥接可补**＝MMBOT 自有能力或 Harness 公开服务已有，但移动协议尚未暴露；**平台适配**＝能力依赖桌面、浏览器或原生环境，需要明确等价实现；**待公开接口核实**＝不能先写成“不支持”。“手机尚未实现”不是“上游 API 缺失”。
 
 ## 优先修正的行为差异
 
@@ -24,9 +24,9 @@
 | 编号 | 原版基线及证据 | 初始移动端状态 | 可补范围 |
 | --- | --- | --- | --- |
 | V01 | 默认 DeepSeek 主题是黑白主表面与蓝色强调色；另有 Mono、Paper、Moonlight，分别定义明暗模式。[themes.js](../ds-bot/src/client/themes.js#L9) | [theme.ts](../apps/mobile/src/theme.ts) 只随系统明暗变化，采用独立绿色配色。 | **界面可补**：使用相同8个基础色语义，并读取已有 `state.prefs`；不应只把一个绿色按钮换蓝就称视觉对齐。 |
-| V02 | 主题、强调色是主机持久偏好，文案明确“on every device”；另有 Quiet/Normal/Lively 动画偏好。[settings.js](../ds-bot/src/client/settings.js#L37) | 无设置入口，忽略 prefs。 | **桥接可补**：DS Bot `set-prefs {theme,accent,motion}` 已存在；初始 mobile action白名单未开放。原生动画需尊重系统减少动态效果。 |
+| V02 | 主题、强调色是主机持久偏好，文案明确“on every device”；另有 Quiet/Normal/Lively 动画偏好。[settings.js](../ds-bot/src/client/settings.js#L37) | 无设置入口，忽略 prefs。 | **桥接可补**：MMBOT `set-prefs {theme,accent,motion}` 已存在；初始 mobile action白名单未开放。原生动画需尊重系统减少动态效果。 |
 | V03 | Bot使用可选角色造型、色彩或照片；主 Bot、管理员、工作/等待/未读有独立标识。[characters.js](../ds-bot/src/client/characters.js)、[mark.js](../ds-bot/src/client/mark.js)、[sidebar.js](../ds-bot/src/client/sidebar.js#L43) | 用名字首字母的圆角方块；仅识别十六进制 `bot.color`，原版命名色不能正常映射；未显示头像形状/图片。 | **界面可补**：state已返回 avatar/color，`update-bot` 已允许这两字段。自定义插件注册的 SVG/主题不应假定可自动在 RN执行。 |
-| V04 | 左侧主 Bot优先，其余聊天按 pin、活动时间排列；隐藏仍可被搜索找到。[sidebar.js](../ds-bot/src/client/sidebar.js#L220)、[palette.js](../ds-bot/src/client/palette.js#L52) | Chat/Team/Settings三页，聊天选择为简单列表，未还原 pin/hidden 操作和全部可见状态。 | **桥接可补**：`set-flags {id,pinned,hidden}` 是 DS Bot既有接口；默认排序、工作/等你回答/未读可以据state和conversation数据实现。手机抽屉替代桌面侧栏属于等价适配。 |
+| V04 | 左侧主 Bot优先，其余聊天按 pin、活动时间排列；隐藏仍可被搜索找到。[sidebar.js](../ds-bot/src/client/sidebar.js#L220)、[palette.js](../ds-bot/src/client/palette.js#L52) | Chat/Team/Settings三页，聊天选择为简单列表，未还原 pin/hidden 操作和全部可见状态。 | **桥接可补**：`set-flags {id,pinned,hidden}` 是 MMBOT既有接口；默认排序、工作/等你回答/未读可以据state和conversation数据实现。手机抽屉替代桌面侧栏属于等价适配。 |
 | V05 | 详情入口含名称、角色、模型、说明、记忆、用量、计划任务，群含公告、成员和管理员。[details-drawer.js](../ds-bot/src/client/details-drawer.js#L121) | Bot管理移到Team页，聊天页无完整详情层；群详情信息分散。 | **界面可补**：以手机详情Sheet/页面保留原信息分组和入口，不能只提供编辑表单。 |
 | V06 | 原版字符串通过 `t()` 跟随 DSH语言，可切换中英文，日期使用对应locale。[i18n.js](../ds-bot/src/client/i18n.js#L1) | 手机页面硬编码英文，未承接DSH语言。 | **界面可补 / 桥接可补**：先复用本项目字符串语义；Harness语言设置的读取/写入应使用公开设置能力，见H03。没有语言状态时明确手机本地选择，不能伪称已同步。 |
 | V07 | Working、Waiting for your answer、Unread activity、模型未配置/已不可用分别展示；头像与活动行反映工作类型。[sidebar.js](../ds-bot/src/client/sidebar.js#L43)、[cells.js](../ds-bot/src/client/cells.js#L429) | 多数状态归为Connected/Thinking/replying；聊天运行与连接状态容易混在一起。 | **界面可补 / 桥接可补**：连接、主机执行、等待用户、等待审批应分开；工具生命周期和审批投影参见C03/H01。 |
@@ -36,7 +36,7 @@
 
 | 编号 | 原版基线及证据 | 初始移动端状态 | 接口与差距性质 |
 | --- | --- | --- | --- |
-| C01 | DSH Markdown组件处理消息正文，DS Bot加 @引用、代码复制等。[cells.js](../ds-bot/src/client/cells.js#L16) | MessageBubble只识别围栏代码、粗体和行内代码；标题、链接、表格、引用等未等价渲染。[MessageBubble](../apps/mobile/src/components/MessageBubble.tsx) | **界面可补**：正文已返回；RN渲染器需明确支持列表和安全链接方案，不能在手机执行消息HTML。 |
+| C01 | DSH Markdown组件处理消息正文，MMBOT加 @引用、代码复制等。[cells.js](../ds-bot/src/client/cells.js#L16) | MessageBubble只识别围栏代码、粗体和行内代码；标题、链接、表格、引用等未等价渲染。[MessageBubble](../apps/mobile/src/components/MessageBubble.tsx) | **界面可补**：正文已返回；RN渲染器需明确支持列表和安全链接方案，不能在手机执行消息HTML。 |
 | C02 | 原版回复支持引用回复、本地反应、复制和Markdown下载。[cells.js](../ds-bot/src/client/cells.js#L64)、[index.js](../ds-bot/src/client/index.js#L484) | Copy、Share、Read aloud已有；无引用和反应，无法整段对话导出。 | **界面可补**：反应原版本来是本地数据，不应误写成需要主机API；引用可以同原版转文本前缀；对话导出应声明是已加载部分还是完整历史。 |
 | C03 | reasoning、工作活动、普通工具与特定Bot工具有各自呈现；原版也有主动隐藏的内部团队turn。[cells.js](../ds-bot/src/client/cells.js#L102)、[cells.js](../ds-bot/src/client/cells.js#L532) | mobile projection只保留用户/助手文本和群relay回复；工具call只是用于识别relay，普通tool结果、reasoning被丢弃。[projection.js](../ds-bot/src/mobile/projection.js#L12) | **桥接可补**：公开Session事件/流可投影类型化活动、reasoning和安全工具摘要；不得取消原版hiddenTurns等过滤，把隐藏内部轮次全部泄露到聊天。 |
 | C04 | 对话有日期、turn耗时、新消息分隔、群发言者、失败原因和交接标记。[cells.js](../ds-bot/src/client/cells.js#L259) | 仅作者+正文，多数source事件未进入移动投影；失败群reply是system文本。 | **界面可补 / 桥接可补**：时间和作者已有；schedule、handoff、bot request/reply需保留类型化source语义。不能把系统通知画成Bot正常回答。 |
@@ -57,24 +57,24 @@
 | S02 | 记忆有summary/all entries、重生成、更新中/更新时间、Ask or update以及修改结果。[memory-panel.js](../ds-bot/src/client/memory-panel.js#L204) | 只有条目读取和删除。 | **界面可补**：`memory-view {botId,summarize,regenerate}`、`memory-ask {botId,text}` 已开放；不能把summary生成中显示为空记忆。 |
 | S03 | 用量含24h/7d/30d/12w/12m/自定义范围、Bot/model分组、缓存命中率、时间序列与活动热图。[usage-page.js](../ds-bot/src/client/usage-page.js#L380) | 只有所有记录的Input/Output/Requests总和。 | **界面可补**：usage现有返回足够支持原版统计视图；至少口径、范围、分组和选择状态等价，图表按手机宽度适配。 |
 | S04 | 定时任务可查/创建/删除，支持一次、每天、每周、重复，显示目标、时区、下一次、已结束；可用于Bot或群。[schedules.js](../ds-bot/src/client/schedules.js#L108) | 没有入口。 | **桥接可补**：自有`schedules`/`schedule-create`/`schedule-delete`委托公开`ctx.schedule.catalog/create/delete`，[host/schedules.js](../ds-bot/src/host/schedules.js#L93)。服务未启用返回available:false，不可伪造成功。 |
-| S05 | Secrets包含名称、用途、授权Bot范围，聊天有请求卡；已有值绝不回传。[channel.js](../ds-bot/src/host/channel.js#L52)、[secret-card.js](../ds-bot/src/client/secret-card.js) | state过滤掉secrets/secretRequests，无管理页和请求卡。 | **桥接可补，不是上游API缺失**：DS Bot自有secret-set/allow/cancel/update/delete已有；见下方敏感设置边界。 |
+| S05 | Secrets包含名称、用途、授权Bot范围，聊天有请求卡；已有值绝不回传。[channel.js](../ds-bot/src/host/channel.js#L52)、[secret-card.js](../ds-bot/src/client/secret-card.js) | state过滤掉secrets/secretRequests，无管理页和请求卡。 | **桥接可补，不是上游API缺失**：MMBOT自有secret-set/allow/cancel/update/delete已有；见下方敏感设置边界。 |
 | S06 | GitHub Connector支持令牌输入、连接中、账号、错误重试、断开。[connectors.js](../ds-bot/src/client/connectors.js) | 无入口且state过滤connectors。 | **桥接可补**：connector-connect/disconnect/retry 已有；一次性写入密钥，响应只返回元信息，状态遵循主机。 |
 | S07 | Feedback提供兼容性诊断、客户端/主机错误、报告复制与日志清除/下载。[feedback.js](../ds-bot/src/client/feedback.js#L48) | 只有界面errorText，无诊断页。 | **桥接可补**：diagnostics/diagnostics-log/diagnostics-clear 自有接口；移动客户端需提供自己的平台版本/错误摘要并继续执行脱敏，不能直接共享全环境。 |
 | S08 | 原版提供Classic Agent模式、Plugins/Harness settings、更新入口。[settings.js](../ds-bot/src/client/settings.js#L63)、[sidebar.js](../ds-bot/src/client/sidebar.js#L266) | 无对应入口。 | **分项适配**：普通Agent见H06；插件配置见H03；更新主机和更新手机是两件事，不能将host update-install伪装成App升级。 |
 
 ## Harness公开能力与真正的平台边界
 
-这里的“公开”指文档声明的Cordis服务、事件和Remote namespace。DS Bot自身的`/api/bot` handler可以在插件内复用；不得读取Harness安装目录、复制私有实现或修改Harness。
+这里的“公开”指文档声明的Cordis服务、事件和Remote namespace。MMBOT自身的`/api/bot` handler可以在插件内复用；不得读取Harness安装目录、复制私有实现或修改Harness。
 
 | 编号 | 能力 | 已核实证据 | 结论与必要约束 |
 | --- | --- | --- | --- |
 | H01 | 工具审批 | [公开approval文档](https://github.com/deepseek-ai/deepseek-harness/blob/5badb15/docs/subsystems/approval.md)声明`ctx.approval`、`approval/request` waterfall、`approval/asked`/`approval/decided`事件，支持UI channel提供answerer。 | **存在公开扩展缝隙，不能说只能桌面审批**。初始mobile没有审批接口。若接入，需按请求/Session归属展示动作原因，保留取消、超时、多端竞争单决、ask/never策略与默认拒绝；不能把普通user-question当审批。具体answerer顺序和SDK协议需实现及集成验证后才标完成。 |
 | H02 | 工具、reasoning、会话状态 | [Session公开文档](https://github.com/deepseek-ai/deepseek-harness/blob/5badb15/docs/subsystems/session.md)、[工具执行文档](https://github.com/deepseek-ai/deepseek-harness/blob/5badb15/docs/tool-execution-pipeline.md)；当前adapter已经使用公开Session读/流。 | **桥接可补**。投影数据可供RN原生展示；Harness浏览器React Slot组件不能直接被当作RN组件复用，动态插件专属UI需要renderer适配或清晰降级。 |
 | H03 | Harness Settings、模型供应商和插件配置 | [公开settings文档](https://github.com/deepseek-ai/deepseek-harness/blob/5badb15/docs/subsystems/settings.md#ctxsettingscontroller--settingscontroller)列出`ctx.settingsController.describe/update/replace/mutate`，remote读一律`redactSecrets:true`；修改支持expectedRevision与冲突拒绝。 | **有公开API，可通过受控桥接补齐**。需消费schema/当前revision/secret字段提示，使用mutate/update保留未返回的密钥，不能把redacted值整体replace造成密钥被清空。打开主机设置文件`openSettingsDocument`是主机桌面动作，不是手机编辑器。并非所有插件自定义浏览器页面都能由schema自动重建。 |
-| H04 | DS Bot Secrets | 自有[channel handler](../ds-bot/src/host/channel.js#L205)和[secret实现](../ds-bot/src/host/secrets.js#L303)已支持授权、取消、范围修改和删除；secretView仅出元信息。 | **插件内可补齐**，无需修改Harness。新值仅HTTPS一次性提交，不能进SQLite草稿、重放队列、日志、剪贴板自动复制或响应；已有值不能“显示明文”。授权卡必须绑定requestId，失效不应当重新授权。 |
+| H04 | MMBOT Secrets | 自有[channel handler](../ds-bot/src/host/channel.js#L205)和[secret实现](../ds-bot/src/host/secrets.js#L303)已支持授权、取消、范围修改和删除；secretView仅出元信息。 | **插件内可补齐**，无需修改Harness。新值仅HTTPS一次性提交，不能进SQLite草稿、重放队列、日志、剪贴板自动复制或响应；已有值不能“显示明文”。授权卡必须绑定requestId，失效不应当重新授权。 |
 | H05 | Bot Desktop浏览器 | [bot-browsers.js](../ds-bot/src/client/bot-browsers.js#L1)依赖`dshDesktop.browser.acquire('bot:<id>')`、Electron webview、Desktop本地tab状态和独立cookie分区；`browser-wait/result`仅是read_browser请求/结果通道。[index.js](../ds-bot/src/client/index.js#L546)无Desktop bridge时不注册浏览器控制。 | **真实平台差异**：现有主机接口不是“远程操作桌面标签页”的公开接口。手机独立WebView不会自动继承Desktop登录态，普通外链也不等价。可审查公开browser-use provider的能力并实现独立适配；在API证据和会话归属机制完整前，保留明确Desktop能力说明，不能假称同一浏览器。 |
-| H06 | DSH Agent普通会话 | DS Bot现有add-agent/agent-session/agent-adopt/agent-archive/agent-rename/remove-agent，[channel.js](../ds-bot/src/host/channel.js#L170)；与Bot长期会话是不同身份。 | **桥接可补**：初始mobile state未返回agents，conversations只覆盖Bot/群。需独立identity/创建归属/历史/模型/工作区配置，不可把普通Session强行注册成Bot或改Bot part语义。 |
-| H07 | 原版语言、深浅色和客户端偏好 | DS Bot [installLocale/language](../ds-bot/src/client/i18n.js)跟随Harness客户端；Bot主题保存在state.prefs；Harness [locale-settings.ts](https://github.com/deepseek-ai/deepseek-harness/blob/5badb15/packages/client/locale/src/locale-settings.ts)公开namespace `locale`、字段`preference`，内置zh/en。 | **可通过公开settings同步宿主语言**；手机仍需自己的翻译渲染与偏好订阅，不是保存locale就自动翻译RN页面。Bot主题与Harness明暗模式是独立偏好，来源不能混淆。 |
+| H06 | DSH Agent普通会话 | MMBOT现有add-agent/agent-session/agent-adopt/agent-archive/agent-rename/remove-agent，[channel.js](../ds-bot/src/host/channel.js#L170)；与Bot长期会话是不同身份。 | **桥接可补**：初始mobile state未返回agents，conversations只覆盖Bot/群。需独立identity/创建归属/历史/模型/工作区配置，不可把普通Session强行注册成Bot或改Bot part语义。 |
+| H07 | 原版语言、深浅色和客户端偏好 | MMBOT [installLocale/language](../ds-bot/src/client/i18n.js)跟随Harness客户端；Bot主题保存在state.prefs；Harness [locale-settings.ts](https://github.com/deepseek-ai/deepseek-harness/blob/5badb15/packages/client/locale/src/locale-settings.ts)公开namespace `locale`、字段`preference`，内置zh/en。 | **可通过公开settings同步宿主语言**；手机仍需自己的翻译渲染与偏好订阅，不是保存locale就自动翻译RN页面。Bot主题与Harness明暗模式是独立偏好，来源不能混淆。 |
 | H08 | 动态插件客户端UI、终端、桌面资源与更新 | [Extensions公开文档](https://github.com/deepseek-ai/deepseek-harness/blob/5badb15/docs/subsystems/extensions.md)区分Host/Client halves；[Web client文档](https://github.com/deepseek-ai/deepseek-harness/blob/5badb15/docs/subsystems/web-client.md)定义浏览器组件与slots。 | **平台适配，不是统一一个缺接口结论**：Host动作与数据可能可桥接；浏览器DOM、Electron窗口、终端交互和本机文件路径需要分别实现renderer或宿主适配。未实现的表面需保留真实能力提示，不能用无响应按钮占位。 |
 
 ## 对齐验收规则
@@ -124,7 +124,7 @@
 | S07 Feedback | [FeedbackPanel](../apps/mobile/src/host-settings/FeedbackPanel.tsx)预览主机脱敏诊断、近期错误、复制、导出/清除日志和主动打开issue草稿。 | 不自动外发、不把诊断塞入issue URL；分享前由用户检查。没有客户端持久错误采集队列，当前上传clientErrors为空。 |
 | H01 工具审批 | [approvals](../ds-bot/src/mobile/approvals.js)实现共享broker与稳定请求ID；桌面/手机共享单次决定，ask/never、无answerer拒绝、取消与销毁保留；8项真实Cordis服务测试及24步协议中的审批用例通过。 | 移动只提供Allow once/Reject，不新增绕过主机策略的永久授权；原生前后台恢复仍需真机验收。 |
 | H03 Harness设置/凭据 | [HarnessPanel](../apps/mobile/src/host-settings/HarnessPanel.tsx)消费公开Schemastery envelope与revision，逐字段mutate；[CredentialsPanel](../apps/mobile/src/host-settings/CredentialsPanel.tsx)仅列既有apiKeyEnv引用并set/unset。 | **复杂条件表单、集合项增删、自定义插件控件尚未移植**；能编辑既有集合值。是移动UI范围，不是公开API缺失；不replace被脱敏的整份配置。 |
-| S08、H08 Plugins与更新 | 已支持包检查、固定版本安装、阶段与结果查询、取消、确认卸载；插件启停与专用 DS Bot 更新保留。 | 构建脚本单独批准；保护 DS Bot/受保护包；真实第三方安装仍需部署验收。 |
+| S08、H08 Plugins与更新 | 已支持包检查、固定版本安装、阶段与结果查询、取消、确认卸载；插件启停与专用 MMBOT 更新保留。 | 构建脚本单独批准；保护 MMBOT/受保护包；真实第三方安装仍需部署验收。 |
 | H08 Skills | 已支持 Bot/Agent 作用域目录、正文预览、草稿 `/技能名` 调用及自有库编辑/删除。 | 不改写项目/用户/插件文件；模型专用技能不伪造用户调用；并发保存按 revision 校验。 |
 | H05 Desktop Browser | 已支持桌面 opt-in 后的标签、导航、读取、滚动、确认点击与输入；固定指令及快照校验。 | 已联调受控 Chromium 窗口和真实手机界面；原生 Electron/Windows/macOS 实机尚未验收；不共享 Cookie。 |
 
