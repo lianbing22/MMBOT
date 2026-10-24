@@ -48,7 +48,7 @@ git tag v0.1.1
 git push origin v0.1.1
 ```
 
-标签工作流重新构建并创建正式 Release，附配套 `.tgz`、两种已签名 APK（例如 `dsbot-android-arm64-v0.1.1.apk`）、公开证书与总校验和。如果缺少签名 Secret，标签校验失败，不会把未签名包发布成可安装版本。签名密码、私密备份、原生数据与 DSH_HOME 不会作为产物上传。
+标签工作流重新构建并创建正式 Release，附配套 `.tgz`、两种已签名 APK（例如 `dsbot-android-arm64-v0.1.1.apk`）、公开证书、总校验和，以及桌面安装包——Windows `.exe`（含 `.blockmap` 与 `latest.yml`）、macOS zip、Linux 的 AppImage、deb 与 `latest-linux.yml`。如果缺少签名 Secret，标签校验失败，不会把未签名包发布成可安装版本。签名密码、私密备份、原生数据与 DSH_HOME 不会作为产物上传。
 
 Artifacts 有 GitHub 保留期限，需要长期保存的版本使用 Releases。Release 的校验和按下载后的平铺文件名记录；Linux 在下载目录执行 `sha256sum -c SHA256SUMS`，macOS 用 `shasum -a 256 -c SHA256SUMS`，Windows 用 PowerShell `Get-FileHash 文件名 -Algorithm SHA256` 核对。
 
