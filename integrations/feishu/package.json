@@ -1,0 +1,31 @@
+{
+  "name": "mmbot-feishu-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MMBOT Feishu (Lark) connector: an MCP stdio server that lets a Bot read and send Feishu messages. No dependencies.",
+  "type": "module",
+  "main": "./server.mjs",
+  "bin": {
+    "mmbot-feishu": "./server.mjs"
+  },
+  "files": [
+    "server.mjs",
+    "README.md",
+    "README.zh.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test",
+    "print-tools": "node server.mjs --print-tools"
+  },
+  "keywords": [
+    "mmbot",
+    "mcp",
+    "feishu",
+    "lark"
+  ],
+  "license": "Apache-2.0"
+}
