@@ -85,7 +85,7 @@ MMBOT 会把 `auto` 搜索 provider 选为整个 profile 的后端。禁用 `web
 
 ## 桌面应用
 
-桌面应用位于 [`app/`](app/README.md)（英文）。它自带 DSH，不用先装 DSH。在 [Releases](https://github.com/lianbing22/MMBOT/releases/latest) 里下载：
+桌面应用位于 [`app/`](app/README.md)（英文）。它自带 DSH，不用先装 DSH。桌面安装包随每个 MMBOT 版本发布；本仓库承接的 `v0.1.3` 只包含插件归档和手机安装包，此前 DS Bot App 的桌面安装包仍留在原仓库，直到 MMBOT 的第一个桌面版本发布。届时在 [Releases](https://github.com/lianbing22/MMBOT/releases/latest) 里可下载的文件名是：
 
 - Windows（x64）：`MMBOT-<版本>-win-x64.exe`。运行它即可安装，只装给当前用户，不要管理员权限。如果提示“Windows 已保护你的电脑”，点 **更多信息** → **仍要运行**。
 - macOS：Apple 芯片下载 `MMBOT-<版本>-mac-arm64.zip`，Intel 下载 `MMBOT-<版本>-mac-x64.zip`。Safari 会自动解压；把 **MMBOT** 拖进 **应用程序**，再打开。如果提示无法检查这个 App，打开 **系统设置** → **隐私与安全性**，点 **仍要打开**。

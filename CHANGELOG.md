@@ -20,6 +20,7 @@ All notable changes to MMBOT are listed here. The format follows [Keep a Changel
 - The DSH plugin package stays `ds-bot`, the data folder stays `~/.ds-bot-app`, and the phone app keeps its DS Bot name, package id and APK names until its next release.
 - Installs made from this fork's earlier repository or from the upstream projects are still recognised by the updater and migrate to this repository's pinned source.
 - Attribution for DS Bot App, DeepSeek-Bot and DeepSeek Harness stays in `NOTICE` and in the README Credits. Historical notes under `docs/releases/` keep their content and use the new name.
+- The `v0.1.3` release in this repository carries the plugin archive, `SHA256SUMS`, the Android signing certificate and both phone APKs unchanged from the previous name, so the documented installation and phone downloads keep working; the desktop installers stay on the earlier repository until the next release.
 
 ### Upstream synchronization (unreleased)
 

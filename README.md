@@ -85,7 +85,7 @@ Build the image from this repository checkout; see [`docker/README.md`](docker/R
 
 ## Desktop app
 
-The desktop app is in [`app/`](app/README.md). It brings its own DSH, so you don't need to install DSH first. Download it from [Releases](https://github.com/lianbing22/MMBOT/releases/latest):
+The desktop app is in [`app/`](app/README.md). It brings its own DSH, so you don't need to install DSH first. Desktop installers are attached to each MMBOT release; the carried-over `v0.1.3` release here holds the plugin archive and the phone builds, and the previous DS Bot App installers stay on the earlier repository until the first MMBOT desktop build. The names to expect, from [Releases](https://github.com/lianbing22/MMBOT/releases):
 
 - Windows (x64): `MMBOT-<version>-win-x64.exe`. Run it; it installs for your user only, without administrator rights. If Windows shows "Windows protected your PC", select **More info** → **Run anyway**.
 - macOS: `MMBOT-<version>-mac-arm64.zip` for an Apple chip, `MMBOT-<version>-mac-x64.zip` for Intel. Safari unzips it by itself; drag **MMBOT** into **Applications** and open it. When macOS says it cannot check the app, open **System Settings** → **Privacy & Security** and select **Open Anyway**.
