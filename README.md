@@ -89,7 +89,7 @@ The desktop app is in [`app/`](app/README.md). It brings its own DSH, so you don
 
 - Windows (x64): `MMBOT-<version>-win-x64.exe`. Run it; it installs for your user only, without administrator rights. If Windows shows "Windows protected your PC", select **More info** → **Run anyway**.
 - macOS: `MMBOT-<version>-mac-arm64.zip` for an Apple chip, `MMBOT-<version>-mac-x64.zip` for Intel. Safari unzips it by itself; drag **MMBOT** into **Applications** and open it. When macOS says it cannot check the app, open **System Settings** → **Privacy & Security** and select **Open Anyway**.
-- Linux (x64): the app also builds as `MMBOT-<version>-linux-x86_64.AppImage` and `MMBOT-<version>-linux-amd64.deb`; CI builds and checks both, but this fork's release flow does not attach them to Releases yet. Build one with `npm run dist` in `app/` on Linux; see the Linux part of [`app/README.md`](app/README.md).
+- Linux (x64): `MMBOT-<version>-linux-x86_64.AppImage` runs on every distribution — make it executable and open it. It mounts through FUSE 2, which you may need to install first (`sudo apt install libfuse2t64` on Ubuntu 24.04+, `sudo dnf install fuse-libs` on Fedora, `sudo pacman -S fuse2` on Arch). On Ubuntu 24.04 and later an AppImage can refuse to start (Ubuntu restricts the sandbox it needs); the `MMBOT-<version>-linux-amd64.deb` on Debian/Ubuntu does not have this problem and adds a menu entry.
 
 At the first start the app asks where to keep its data and the Bots' files, and offers to copy a Bot team from your DSH (it only reads your DSH). Set up a model in its settings. The Windows app updates itself; the macOS app and a Linux deb tell you when a new version is ready to download.
 

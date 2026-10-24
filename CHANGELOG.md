@@ -22,6 +22,10 @@ All notable changes to MMBOT are listed here. The format follows [Keep a Changel
 - Attribution for DS Bot App, DeepSeek-Bot and DeepSeek Harness stays in `NOTICE` and in the README Credits. Historical notes under `docs/releases/` keep their content and use the new name.
 - The `v0.1.3` release in this repository carries the plugin archive, `SHA256SUMS`, the Android signing certificate and both phone APKs unchanged from the previous name, so the documented installation and phone downloads keep working; the desktop installers stay on the earlier repository until the next release.
 
+### Linux desktop in the release flow
+
+- The release workflow now builds the Linux desktop packages on its own runner and attaches the AppImage, the deb and `latest-linux.yml` to every plain `vX.Y.Z` release, beside the Windows and macOS installers, with their checksums in `SHA256SUMS`. A `-rN` revision still publishes plugin and Android assets only.
+
 ### Upstream synchronization (unreleased)
 
 - Port the approved upstream desktop, runtime, session-navigation, thinking, views, avatar, and message-display changes while retaining MMBOT version `0.1.3`, fork release metadata, and mobile authorization/TLS isolation.
